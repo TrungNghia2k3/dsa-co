@@ -1,15 +1,8 @@
 // Components
-import Paragraph from "../components/Paragraph.jsx";
-import Bullet from "../components/Bullet.jsx";
-import Title from "../components/Title.jsx";
-import Image from "../components/Image.jsx";
-import CodeBlock from "../components/CodeBlock.jsx";
-import BlockQuote from "../components/BlockQuote.jsx";
-import Complexity from "../components/Complexity.jsx";
+import {Paragraph, Bullet, Title, Image, CodeBlock, BlockQuote, Complexity} from "../components";
 
 // Assets
-import {examples} from "../assets/data/examples.js";
-import {images} from "../assets/data/images.js";
+import {examples, images} from "../assets/data";
 
 // Visualizers
 import BubbleSortVisualizer from "../visualizer/algorithm/bubble-sort/BubbleSortVisualizer.jsx";

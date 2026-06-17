@@ -1,8 +1,5 @@
 // Components
-import Paragraph from "../../components/Paragraph.jsx";
-import ExampleList from "../../components/ExampleList.jsx";
-import Bullet from "../../components/Bullet.jsx";
-import ConstraintsBullet from "../../components/ConstraintsBullet.jsx";
+import { Paragraph, ExampleList, Bullet } from "../../components";
 const ImplementRand10UsingRand7 = () => {
     const examples = [
         {
@@ -37,7 +34,7 @@ const ImplementRand10UsingRand7 = () => {
             <Bullet
                 heading={"Follow up:"} bold
                 items={["What is the expected value for the number of calls to rand7() function?",
-                "Could you minimize the number of calls to rand7()?"]} />
+                    "Could you minimize the number of calls to rand7()?"]} />
         </div>
     );
 }

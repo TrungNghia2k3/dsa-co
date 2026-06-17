@@ -1,9 +1,5 @@
 // Components
-import Bullet from "../../components/Bullet.jsx";
-import CodeBlock from "../../components/CodeBlock.jsx";
-import Heading from "../../components/Heading.jsx";
-import Paragraph from "../../components/Paragraph.jsx";
-import TableOfContents from "../../components/TableOfContents.jsx";
+import { Bullet, CodeBlock, Heading, Paragraph, TableOfContents } from "../../components";
 
 // Visualizers
 import PermutationsBacktrackingVisualizer from "../../visualizer/problem/permutations/PermutationsBacktrackingVisualizer.jsx";
@@ -11,7 +7,7 @@ import PermutationsRecursionVisualizer from "../../visualizer/problem/permutatio
 import PermutationsIterationVisualizer from "../../visualizer/problem/permutations/PermutationsIterationVisualizer.jsx";
 
 // Assets
-import { solutions } from "../../assets/data/solutions.js";
+import { solutions } from "../../assets/data";
 
 const Permutations = () => {
     return (
@@ -30,7 +26,7 @@ const Permutations = () => {
 
             <section id="problem-analysis">
                 <Heading heading={"Problem Analysis"} />
-                
+
                 <Paragraph content={"The Permutations problem asks us to generate all possible arrangements of a given array of distinct integers. This is a classic combinatorial problem that demonstrates important algorithmic techniques like backtracking, recursion, and systematic enumeration."} />
 
                 <Bullet
@@ -65,7 +61,7 @@ const Permutations = () => {
 
             <section id="approach-1-recursion">
                 <Heading heading={"Approach 1: Recursion"} />
-                
+
                 <Paragraph content={"This approach uses recursion with in-place swapping to generate permutations. It builds permutations by fixing each element at each position through swapping."} />
 
                 <Bullet
@@ -96,17 +92,17 @@ const Permutations = () => {
                         "Space Complexity: O(n) - recursion depth (excluding output space)"
                     ]} />
 
-                <CodeBlock 
-                    language="javascript" 
-                    code={solutions.permutations.recursion.javascript} 
+                <CodeBlock
+                    language="javascript"
+                    code={solutions.permutations.recursion.javascript}
                 />
-                
+
                 <PermutationsRecursionVisualizer />
             </section>
 
             <section id="approach-2-iteration">
                 <Heading heading={"Approach 2: Iteration"} />
-                
+
                 <Paragraph content={"This approach builds permutations iteratively by adding one element at a time to existing partial permutations. It's more intuitive for those who prefer iterative solutions."} />
 
                 <Bullet
@@ -126,7 +122,7 @@ const Permutations = () => {
                     items={[
                         "Input: [1,2,3]",
                         "Start: [[]]",
-                        "Add 1: [[1]]", 
+                        "Add 1: [[1]]",
                         "Add 2: [[2,1], [1,2]]",
                         "Add 3: [[3,2,1], [2,3,1], [2,1,3], [3,1,2], [1,3,2], [1,2,3]]"
                     ]} />
@@ -138,17 +134,17 @@ const Permutations = () => {
                         "Space Complexity: O(n! × n) - storing all permutations during construction"
                     ]} />
 
-                <CodeBlock 
-                    language="javascript" 
-                    code={solutions.permutations.iteration.javascript} 
+                <CodeBlock
+                    language="javascript"
+                    code={solutions.permutations.iteration.javascript}
                 />
-                
+
                 <PermutationsIterationVisualizer />
             </section>
 
             <section id="approach-3-backtracking">
                 <Heading heading={"Approach 3: Backtracking"} />
-                
+
                 <Paragraph content={"Backtracking is the most elegant and widely-used approach for permutation generation. It systematically explores all possibilities while maintaining state efficiently."} />
 
                 <Bullet
@@ -192,9 +188,9 @@ const Permutations = () => {
                         "Space Complexity: O(n) - recursion depth + current path (excluding output)"
                     ]} />
 
-                <CodeBlock 
-                    language="javascript" 
-                    code={solutions.permutations.backtracking.javascript} 
+                <CodeBlock
+                    language="javascript"
+                    code={solutions.permutations.backtracking.javascript}
                 />
 
                 <PermutationsBacktrackingVisualizer />

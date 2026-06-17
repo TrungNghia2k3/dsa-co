@@ -1,19 +1,11 @@
 // Components
-import Paragraph from "../../components/Paragraph.jsx";
-import ExampleList from "../../components/ExampleList.jsx";
-import ConstraintsBullet from "../../components/ConstraintsBullet.jsx";
-import Bullet from "../../components/Bullet.jsx";
-import TableOfContents from "../../components/TableOfContents.jsx";
-import Heading from "../../components/Heading.jsx";
-import CodeBlock from "../../components/CodeBlock.jsx";
-import References from "../../components/References.jsx";
+import { Paragraph, ExampleList, ConstraintsBullet, Bullet, TableOfContents, Heading, CodeBlock, References } from "../../components";
 
 // Visualizers
 import BaseballGameVisualizer from "../../visualizer/problem/baseball-game/BaseballGameVisualizer.jsx";
 
 // Solutions
-import { solutions } from "../../assets/data/solutions.js";
-import { questions } from "../../assets/data/references.js";
+import { solutions, questionsReferences } from "../../assets/data";
 
 const BaseballGame = () => {
 
@@ -83,42 +75,42 @@ const BaseballGame = () => {
             <ConstraintsBullet constraints={constraints} />
 
             <TableOfContents items={[
-                {id: 'baseball-game-stack-solution', title: 'Stack Solution'},
-            ]}/>
+                { id: 'baseball-game-stack-solution', title: 'Stack Solution' },
+            ]} />
 
             <section id="baseball-game-stack-solution">
-                <Heading heading={"Stack Solution"}/>
+                <Heading heading={"Stack Solution"} />
 
                 <Paragraph
-                    content={"This problem is perfectly suited for a stack data structure. We can process each operation sequentially, using the stack to keep track of valid scores and maintaining a running sum for efficiency."}/>
+                    content={"This problem is perfectly suited for a stack data structure. We can process each operation sequentially, using the stack to keep track of valid scores and maintaining a running sum for efficiency."} />
 
                 <Paragraph
-                    content={"The key insight is to maintain the sum incrementally rather than calculating it at the end. When we add a score, we add it to both the stack and the sum. When we remove a score (cancel operation), we subtract it from the sum. This gives us O(1) time complexity for the final result."}/>
+                    content={"The key insight is to maintain the sum incrementally rather than calculating it at the end. When we add a score, we add it to both the stack and the sum. When we remove a score (cancel operation), we subtract it from the sum. This gives us O(1) time complexity for the final result."} />
 
                 <Bullet heading={"Algorithm Steps:"} bold
-                        items={[
-                            "Initialize an empty stack and sum = 0",
-                            "For each operation:",
-                            "• If it's a number: push to stack and add to sum",
-                            "• If it's 'C': pop from stack and subtract from sum", 
-                            "• If it's 'D': double the last score, push result, add to sum",
-                            "• If it's '+': sum last two scores, push result, add to sum",
-                            "Return the final sum"
-                        ]}
-                        type={"ol"}/>
+                    items={[
+                        "Initialize an empty stack and sum = 0",
+                        "For each operation:",
+                        "• If it's a number: push to stack and add to sum",
+                        "• If it's 'C': pop from stack and subtract from sum",
+                        "• If it's 'D': double the last score, push result, add to sum",
+                        "• If it's '+': sum last two scores, push result, add to sum",
+                        "Return the final sum"
+                    ]}
+                    type={"ol"} />
 
-                <CodeBlock language={"javascript"} code={solutions.baseball_game.stack.javascript}/>
+                <CodeBlock language={"javascript"} code={solutions.baseball_game.stack.javascript} />
 
-                <BaseballGameVisualizer/>
+                <BaseballGameVisualizer />
 
                 <Bullet heading={"Time / Space Complexity Analysis"} bold
-                        items={[
-                            "Time Complexity: O(n), where n is the number of operations. Each operation is processed exactly once.",
-                            "Space Complexity: O(n), in the worst case the stack could contain all operations if they are all numbers."
-                        ]}/>
+                    items={[
+                        "Time Complexity: O(n), where n is the number of operations. Each operation is processed exactly once.",
+                        "Space Complexity: O(n), in the worst case the stack could contain all operations if they are all numbers."
+                    ]} />
             </section>
 
-            <References references={questions.baseball_game} />
+            <References references={questionsReferences.baseball_game} />
 
         </div>
     );

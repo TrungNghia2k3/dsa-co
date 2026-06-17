@@ -1,20 +1,12 @@
 // Components
-import Paragraph from "../../components/Paragraph.jsx";
-import Bullet from "../../components/Bullet.jsx";
-import ExampleList from "../../components/ExampleList.jsx";
-import ConstraintsBullet from "../../components/ConstraintsBullet.jsx";
-import TableOfContents from "../../components/TableOfContents.jsx";
-import CodeBlock from "../../components/CodeBlock.jsx";
-import Heading from "../../components/Heading.jsx";
-import References from "../../components/References.jsx";
+import { Paragraph, Bullet, ExampleList, ConstraintsBullet, TableOfContents, CodeBlock, Heading, References } from "../../components";
 
 // Visualizers
 import RemoveElementTwoPointersVisualizer from "../../visualizer/problem/remove-element/RemoveElementTwoPointersVisualizer.jsx";
 import RemoveElementBruteForceVisualizer from "../../visualizer/problem/remove-element/RemoveElementBruteForceVisualizer.jsx";
 
 // Assets
-import {solutions} from "../../assets/data/solutions.js";
-import {questions} from "../../assets/data/references.js";
+import { solutions, questionsReferences } from "../../assets/data";
 
 const RemoveElement = () => {
     const examples = [
@@ -33,7 +25,7 @@ const RemoveElement = () => {
     return (
         <div>
             <Paragraph
-                content={"Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val."}/>
+                content={"Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val."} />
 
             <Bullet
                 heading={"Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:"}
@@ -43,45 +35,45 @@ const RemoveElement = () => {
                 ]}
             />
 
-            <ExampleList examples={examples}/>
+            <ExampleList examples={examples} />
 
             <ConstraintsBullet
                 constraints={[
-                    {text: '0 <= nums.length <= 100', type: 'math'},
-                    {text: '0 <= nums[i] <= 50', type: 'math'},
-                    {text: '0 <= val <= 100', type: 'math'},
+                    { text: '0 <= nums.length <= 100', type: 'math' },
+                    { text: '0 <= nums[i] <= 50', type: 'math' },
+                    { text: '0 <= val <= 100', type: 'math' },
                 ]}
             />
 
             <TableOfContents items={[
-                {id: 'remove-element-brute-force', title: 'Approach 1: Brute Force'},
-                {id: 'remove-element-two-pointers-i', title: 'Approach 2: Two Pointers I'},
-                {id: 'remove-element-two-pointers-ii', title: 'Approach 2: Two Pointers II'},
-            ]}/>
+                { id: 'remove-element-brute-force', title: 'Approach 1: Brute Force' },
+                { id: 'remove-element-two-pointers-i', title: 'Approach 2: Two Pointers I' },
+                { id: 'remove-element-two-pointers-ii', title: 'Approach 2: Two Pointers II' },
+            ]} />
 
             <section id="remove-element-brute-force">
-                <Heading heading={"Approach 1: Brute Force"}/>
+                <Heading heading={"Approach 1: Brute Force"} />
 
-                <CodeBlock language={"javascript"} code={solutions.remove_element.brute_force.javascript}/>
+                <CodeBlock language={"javascript"} code={solutions.remove_element.brute_force.javascript} />
 
                 <RemoveElementBruteForceVisualizer />
             </section>
 
             <section id="remove-element-two-pointers-i">
-                <Heading heading={"Approach 2: Two Pointers I"}/>
+                <Heading heading={"Approach 2: Two Pointers I"} />
 
-                <CodeBlock language={"javascript"} code={solutions.remove_element.two_pointers_i.javascript}/>
+                <CodeBlock language={"javascript"} code={solutions.remove_element.two_pointers_i.javascript} />
             </section>
 
             <section id="remove-element-two-pointers-ii">
-                <Heading heading={"Approach 2: Two Pointers II"}/>
+                <Heading heading={"Approach 2: Two Pointers II"} />
 
-                <CodeBlock language={"javascript"} code={solutions.remove_element.two_pointers_ii.javascript}/>
+                <CodeBlock language={"javascript"} code={solutions.remove_element.two_pointers_ii.javascript} />
             </section>
 
             <RemoveElementTwoPointersVisualizer />
 
-            <References references={questions.remove_element}/>
+            <References references={questionsReferences.remove_element} />
         </div>
     )
 };

@@ -1,11 +1,11 @@
 import AlgorithmCard from "../components/AlgorithmCard.jsx";
-import {categories} from "../assets/data/categories.js";
-import {formatTitle} from "../utils/utils.js";
-import {faSort, faSearch, faProjectDiagram, faTree, faBrain} from '@fortawesome/free-solid-svg-icons';
+import { categories } from "../assets/data/categories.js";
+import { formatTitle } from "../utils/utils.js";
+import { faSort, faSearch, faProjectDiagram, faTree, faBrain } from '@fortawesome/free-solid-svg-icons';
 
-const AlgorithmsSection = ({onAlgorithmClick}) => {
+const AlgorithmsSection = ({ onAlgorithmClick }) => {
 
-    const icons = [faSort, faSearch, faProjectDiagram, faTree, faBrain];
+    const icons = [faSort, faProjectDiagram, faSearch, faTree, faBrain];
 
     return (
         <section className="pt-16 sm:pt-20 lg:pt-28 pb-12 sm:pb-16 lg:pb-20 w-full flex flex-col items-center justify-center">
@@ -14,7 +14,7 @@ const AlgorithmsSection = ({onAlgorithmClick}) => {
                     Popular Algorithms & Data structures Categories
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-5 mt-6 sm:mt-8 lg:mt-10">
-                    {Object.entries(categories).map(([key, list], index) => (
+                    {Object.entries(categories).sort((a, b) => a[0].localeCompare(b[0])).map(([key, list], index) => (
                         <AlgorithmCard
                             key={key}
                             icon={icons[index]}

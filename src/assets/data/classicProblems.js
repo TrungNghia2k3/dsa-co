@@ -138,18 +138,20 @@ export const classicProblems = [
 ];
 
 export const problemCategories = {
-    "Dynamic Programming": ["Knapsack Problem", "Travelling Salesman Problem (TSP)", "Subset Sum", "Partition Problem", "DNA Sequence Optimization"],
-    "Graph Theory": ["Chinese Postman Problem", "Graph Coloring", "Maze Solving", "Shortest Path Problems", "Maximum Flow", "Flood Fill"],
-    "Backtracking": ["Eight Queens Puzzle", "Sudoku Solver"],
-    "Recursion": ["Tower of Hanoi"],
-    "String Processing": ["Pattern Matching"],
-    "Optimization": ["Garbage Collector Problem"],
-    "Scheduling": ["Job Scheduling"],
-    "Bioinformatics": ["DNA Sequence Optimization"]
+    "Dynamic Programming": ["Knapsack Problem", "Travelling Salesman Problem (TSP)", "Subset Sum", "Partition Problem", "DNA Sequence Optimization", "Tower of Babel", "Longest Increasing Subsequence", "Longest Common Subsequence", "Edit Distance", "Longest Palindromic Subsequence", "Matrix Chain Multiplication", "Coin Change Problem", "Fibonacci Sequence"],
+    "Graph Theory": ["Chinese Postman Problem", "Graph Coloring", "Maze Solving", "Shortest Path Problems", "Maximum Flow", "Flood Fill", "N-Queens Problem", "Graph Traversal Algorithms", "Dijkstra's Algorithm", "Bellman-Ford Algorithm", "A* Algorithm", "Floyd-Warshall Algorithm"],
+    "Backtracking": ["Eight Queens Puzzle", "Sudoku Solver", "N-Queens Problem"],
+    "Recursion": ["Tower of Hanoi", "Fibonacci Sequence"],
+    "String Processing": ["Pattern Matching", "Edit Distance", "Longest Palindromic Subsequence"],
+    "Optimization": ["Garbage Collector Problem", "Tower of Babel"],
+    "Scheduling": ["Job Scheduling", "Tower of Babel"],
+    "Bioinformatics": ["DNA Sequence Optimization", "Longest Common Subsequence"],
+    "Search Algorithms": ["Binary Search"],
+    "Combinatorial Optimization": ["Garbage Collector Problem"]
 };
 
 export const difficultyColors = {
     "Easy": "bg-green-100 text-green-800",
-    "Medium": "bg-yellow-100 text-yellow-800", 
+    "Medium": "bg-yellow-100 text-yellow-800",
     "Hard": "bg-red-100 text-red-800"
 };

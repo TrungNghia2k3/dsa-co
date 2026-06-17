@@ -15,6 +15,7 @@ import Queue from "./Queue.jsx";
 import Hashing from "./Hashing.jsx";
 import Recursion from "./Recursion.jsx";
 import BackTracking from "./BackTracking.jsx";
+import FloydCycleFindingAlgorithm from './FloydCycleFindingAlgorithm.jsx';
 
 export const algorithmComponents = {
     // Sorting
@@ -36,5 +37,6 @@ export const algorithmComponents = {
     'Hashing': Hashing,
     'Recursion': Recursion,
     'Backtracking': BackTracking,
+    'Floyd’s Cycle Finding Algorithm': FloydCycleFindingAlgorithm,
     // ... add others in the same format
 };

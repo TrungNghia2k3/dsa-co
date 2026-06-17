@@ -3,7 +3,7 @@ import { sortAlphabetically } from "../utils/utils.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faFilter, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import { category_questions } from '../assets/data/category_questions.js';
+import { categoryQuestions } from '../assets/data/categoryQuestions.js';
 
 const difficultyItems = [
     { id: 1, name: 'easy' },
@@ -11,7 +11,7 @@ const difficultyItems = [
     { id: 3, name: 'hard' },
 ];
 
-const categoryItems = [...category_questions].sort((a, b) => a.localeCompare(b));
+const categoryItems = [...categoryQuestions].sort((a, b) => a.localeCompare(b));
 
 const FilterQuestionAside = ({ selectedDifficulties, onDifficultyChange, selectedCategories, onCategoryChange, search, onSearchChange }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -57,7 +57,7 @@ const FilterQuestionAside = ({ selectedDifficulties, onDifficultyChange, selecte
                 <div className="py-4 my-4 border-y border-y-gray-700 border-solid">
                     <h3 className="text-xl font-semibold mb-2 uppercase">Difficulty</h3>
                     {difficultyItems.map(item => (
-                        <label key={item.id} className="flex items-center space-x-2 mb-1">
+                        <label key={item.id} className="flex items-center space-x-2 mb-1 text-nowrap">
                             <input
                                 type="checkbox"
                                 checked={selectedDifficulties.includes(item.name)}

@@ -1,19 +1,11 @@
 // Components
-import Paragraph from "../../components/Paragraph.jsx";
-import ExampleList from "../../components/ExampleList.jsx";
-import ConstraintsBullet from "../../components/ConstraintsBullet.jsx";
-import Bullet from "../../components/Bullet.jsx";
-import TableOfContents from "../../components/TableOfContents.jsx";
-import Heading from "../../components/Heading.jsx";
-import CodeBlock from "../../components/CodeBlock.jsx";
-import References from "../../components/References.jsx";
+import { Paragraph, ExampleList, ConstraintsBullet, Bullet, TableOfContents, Heading, CodeBlock, References } from "../../components";
 
 // Visualizers
 import NumberOfRecentCallsVisualizer from "../../visualizer/problem/number-of-recent-calls/NumberOfRecentCallsVisualizer.jsx";
 
 // Solutions
-import { solutions } from "../../assets/data/solutions.js";
-import { questions } from "../../assets/data/references.js";
+import { solutions, questionsReferences } from "../../assets/data";
 
 const NumberOfRecentCalls = () => {
 
@@ -57,44 +49,44 @@ const NumberOfRecentCalls = () => {
                 constraints={constraints} />
 
             <TableOfContents items={[
-                {id: 'recent-counter-queue-solution', title: 'Queue Solution'},
-            ]}/>
+                { id: 'recent-counter-queue-solution', title: 'Queue Solution' },
+            ]} />
 
             <section id="recent-counter-queue-solution">
-                <Heading heading={"Queue Solution"}/>
+                <Heading heading={"Queue Solution"} />
 
                 <Paragraph
-                    content={"This problem is perfectly suited for a queue data structure with a sliding window approach. The key insight is that we need to maintain only the requests that fall within the current time window [t - 3000, t]."}/>
+                    content={"This problem is perfectly suited for a queue data structure with a sliding window approach. The key insight is that we need to maintain only the requests that fall within the current time window [t - 3000, t]."} />
 
                 <Paragraph
-                    content={"Since the ping times are guaranteed to be strictly increasing, we can use a simple queue where we add new requests to the back and remove outdated requests from the front. This gives us an efficient solution with amortized O(1) time complexity per ping."}/>
+                    content={"Since the ping times are guaranteed to be strictly increasing, we can use a simple queue where we add new requests to the back and remove outdated requests from the front. This gives us an efficient solution with amortized O(1) time complexity per ping."} />
 
                 <Bullet heading={"Algorithm Steps:"} bold
-                        items={[
-                            "Initialize an empty queue in the constructor",
-                            "For each ping(t) call:",
-                            "• Add the new timestamp t to the back of the queue",
-                            "• Remove all timestamps from the front that are < (t - 3000)",
-                            "• Return the current size of the queue",
-                            "The queue size represents requests in range [t - 3000, t]"
-                        ]}
-                        type={"ol"}/>
+                    items={[
+                        "Initialize an empty queue in the constructor",
+                        "For each ping(t) call:",
+                        "• Add the new timestamp t to the back of the queue",
+                        "• Remove all timestamps from the front that are < (t - 3000)",
+                        "• Return the current size of the queue",
+                        "The queue size represents requests in range [t - 3000, t]"
+                    ]}
+                    type={"ol"} />
 
                 <Paragraph
-                    content={"The sliding window nature of this problem means that as time progresses, older requests naturally fall out of the relevant time range and need to be removed. The queue efficiently maintains this sliding window."}/>
+                    content={"The sliding window nature of this problem means that as time progresses, older requests naturally fall out of the relevant time range and need to be removed. The queue efficiently maintains this sliding window."} />
 
-                <CodeBlock language={"javascript"} code={solutions.number_of_recent_calls.queue.javascript}/>
+                <CodeBlock language={"javascript"} code={solutions.number_of_recent_calls.queue.javascript} />
 
-                <NumberOfRecentCallsVisualizer/>
+                <NumberOfRecentCallsVisualizer />
 
                 <Bullet heading={"Time / Space Complexity Analysis"} bold
-                        items={[
-                            "Time Complexity: O(1) amortized per ping. Each request is added once and removed at most once from the queue.",
-                            "Space Complexity: O(W), where W is the maximum number of requests that can occur within the 3000ms window. In the worst case, this is O(min(N, 3000)) where N is the total number of pings."
-                        ]}/>
+                    items={[
+                        "Time Complexity: O(1) amortized per ping. Each request is added once and removed at most once from the queue.",
+                        "Space Complexity: O(W), where W is the maximum number of requests that can occur within the 3000ms window. In the worst case, this is O(min(N, 3000)) where N is the total number of pings."
+                    ]} />
             </section>
 
-            <References references={questions.number_of_recent_calls} />
+            <References references={questionsReferences.number_of_recent_calls} />
 
         </div>
     );

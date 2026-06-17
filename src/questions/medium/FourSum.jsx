@@ -1,9 +1,5 @@
 // Components
-import Bullet from "../../components/Bullet.jsx";
-import CodeBlock from "../../components/CodeBlock.jsx";
-import Heading from "../../components/Heading.jsx";
-import Paragraph from "../../components/Paragraph.jsx";
-import TableOfContents from "../../components/TableOfContents.jsx";
+import { Bullet, CodeBlock, Heading, Paragraph, TableOfContents } from "../../components";
 
 // Visualizers
 import FourSumBruteForceVisualizer from "../../visualizer/problem/four-sum/FourSumBruteForceVisualizer.jsx";
@@ -12,7 +8,7 @@ import FourSumTwoPointersRegularVisualizer from "../../visualizer/problem/four-s
 import FourSumTwoPointersVisualizer from "../../visualizer/problem/four-sum/FourSumTwoPointersVisualizer.jsx";
 
 // Assets
-import { solutions } from "../../assets/data/solutions.js";
+import { solutions } from "../../assets/data";
 
 const FourSum = () => {
     return (
@@ -32,7 +28,7 @@ const FourSum = () => {
 
             <section id="problem-analysis">
                 <Heading heading={"Problem Analysis"} />
-                
+
                 <Paragraph content={"4Sum extends the 3Sum problem to find all unique quadruplets that sum to a target value. This is a natural progression in the k-sum family of problems, requiring careful handling of duplicates and efficient search strategies."} />
 
                 <Bullet
@@ -58,7 +54,7 @@ const FourSum = () => {
 
             <section id="approach-1-brute-force">
                 <Heading heading={"Approach 1: Brute Force"} />
-                
+
                 <Paragraph content={"The brute force approach uses four nested loops to check all possible quadruplets. While straightforward, it's inefficient for larger inputs."} />
 
                 <Bullet
@@ -78,9 +74,9 @@ const FourSum = () => {
                         "Space Complexity: O(k) - where k is the number of unique quadruplets"
                     ]} />
 
-                <CodeBlock 
-                    language="javascript" 
-                    code={solutions.four_sum.brute_force.javascript} 
+                <CodeBlock
+                    language="javascript"
+                    code={solutions.four_sum.brute_force.javascript}
                 />
 
                 <FourSumBruteForceVisualizer />
@@ -88,7 +84,7 @@ const FourSum = () => {
 
             <section id="approach-2-hash-map">
                 <Heading heading={"Approach 2: Hash Map Optimization"} />
-                
+
                 <Paragraph content={"This approach reduces the problem to 2Sum by fixing two elements and using a hash map to find the remaining pair."} />
 
                 <Bullet
@@ -109,9 +105,9 @@ const FourSum = () => {
                         "Space Complexity: O(n) - hash map storage + O(k) for results"
                     ]} />
 
-                <CodeBlock 
-                    language="javascript" 
-                    code={solutions.four_sum.hash_map.javascript} 
+                <CodeBlock
+                    language="javascript"
+                    code={solutions.four_sum.hash_map.javascript}
                 />
 
                 <FourSumHashMapVisualizer />
@@ -119,7 +115,7 @@ const FourSum = () => {
 
             <section id="approach-3-two-pointers">
                 <Heading heading={"Approach 3: Two Pointers"} />
-                
+
                 <Paragraph content={"This approach extends the 3Sum two pointers technique by adding an additional outer loop for the fourth element."} />
 
                 <Bullet
@@ -140,9 +136,9 @@ const FourSum = () => {
                         "Space Complexity: O(1) - excluding output space"
                     ]} />
 
-                <CodeBlock 
-                    language="javascript" 
-                    code={solutions.four_sum.two_pointers.javascript} 
+                <CodeBlock
+                    language="javascript"
+                    code={solutions.four_sum.two_pointers.javascript}
                 />
 
                 <FourSumTwoPointersRegularVisualizer />
@@ -150,7 +146,7 @@ const FourSum = () => {
 
             <section id="approach-4-k-sum">
                 <Heading heading={"Approach 4: K-Sum Two Pointers (Optimal)"} />
-                
+
                 <Paragraph content={"This approach generalizes the solution to work for any k-sum problem, making it highly reusable and elegant. It recursively reduces k-sum to 2-sum."} />
 
                 <Bullet
@@ -192,9 +188,9 @@ const FourSum = () => {
                         "Space Complexity: O(k) - recursion depth + O(result) for output"
                     ]} />
 
-                <CodeBlock 
-                    language="javascript" 
-                    code={solutions.four_sum.k_sum_two_pointers.javascript} 
+                <CodeBlock
+                    language="javascript"
+                    code={solutions.four_sum.k_sum_two_pointers.javascript}
                 />
 
                 <FourSumTwoPointersVisualizer />

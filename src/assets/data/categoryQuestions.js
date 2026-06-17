@@ -1,4 +1,4 @@
-export const category_questions = [
+export const categoryQuestions = [
   "2-sat",
   "array",
   "backtracking",

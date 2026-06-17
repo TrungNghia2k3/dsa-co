@@ -1,23 +1,12 @@
 // Components
-import Bullet from "../../components/Bullet";
-import Paragraph from "../../components/Paragraph";
-import ExampleList from "../../components/ExampleList.jsx";
-import ConstraintsBullet from "../../components/ConstraintsBullet.jsx";
-import References from "../../components/References.jsx";
-import CodeBlock from "../../components/CodeBlock.jsx";
-import Image from "../../components/Image.jsx";
-import TableOfContents from "../../components/TableOfContents.jsx";
-import Title from "../../components/Title.jsx";
-import Complexity from "../../components/Complexity.jsx";
+import { Bullet, Paragraph, ExampleList, ConstraintsBullet, References, CodeBlock, Image, TableOfContents, Title, Complexity } from "../../components";
 
 // Visualizers
 import ValidParenthesesStackVisualizer from "../../visualizer/problem/valid-parentheses/ValidParenthesesStackVisualizer.jsx";
 import ValidParenthesesBruteForceVisualizer from "../../visualizer/problem/valid-parentheses/ValidParenthesesBruteForceVisualizer.jsx";
 
 // Assets
-import { questions } from "../../assets/data/references.js";
-import { solutions } from "../../assets/data/solutions.js";
-import { imagesProblem } from "../../assets/data/images.js";
+import { questionsReferences, solutions, imagesProblem } from "../../assets/data";
 
 const ValidParentheses = () => {
 
@@ -95,7 +84,7 @@ const ValidParentheses = () => {
                 <ValidParenthesesStackVisualizer />
             </section>
 
-            <References references={questions.valid_parentheses} />
+            <References references={questionsReferences.valid_parentheses} />
         </div>
     );
 };

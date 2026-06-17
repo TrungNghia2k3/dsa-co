@@ -1,17 +1,8 @@
 // Components
-import Paragraph from "../../components/Paragraph.jsx";
-import ExampleList from "../../components/ExampleList.jsx";
-import ConstraintsBullet from "../../components/ConstraintsBullet.jsx";
-import TableOfContents from "../../components/TableOfContents.jsx";
-import References from "../../components/References.jsx";
-import Title from "../../components/Title.jsx";
-import BlockQuote from "../../components/BlockQuote.jsx";
-import CodeBlock from "../../components/CodeBlock.jsx";
+import { Paragraph, ExampleList, ConstraintsBullet, TableOfContents, References, Title, BlockQuote, CodeBlock } from "../../components";
 
 // Assets
-import {imagesProblem} from "../../assets/data/images.js";
-import {questions} from "../../assets/data/references.js";
-import {solutions} from "../../assets/data/solutions.js";
+import { imagesProblem, questionsReferences, solutions } from "../../assets/data";
 
 // Visualizers
 import LinkedListMergeUsingRecursiveVisualizer
@@ -39,54 +30,54 @@ const MergeTwoSortedLists = () => {
 
     return (
         <div>
-            <Paragraph content={"You are given the heads of two sorted linked lists list1 and list2."}/>
+            <Paragraph content={"You are given the heads of two sorted linked lists list1 and list2."} />
 
             <Paragraph
-                content={"Merge the two lists into one sorted list. The list should be made by splicing together the nodes of the first two lists."}/>
+                content={"Merge the two lists into one sorted list. The list should be made by splicing together the nodes of the first two lists."} />
 
-            <Paragraph content={"Return the head of the merged linked list."}/>
+            <Paragraph content={"Return the head of the merged linked list."} />
 
-            <ExampleList examples={examples}/>
+            <ExampleList examples={examples} />
 
             <ConstraintsBullet
                 constraints={[
-                    {text: 'The number of nodes in both lists is in the range [0, 50]', type: 'math'},
-                    {text: '-100 <= Node.val <= 100', type: 'math'},
-                    {text: 'Both list1 and list2 are sorted in non-decreasing order.', type: 'text'}
+                    { text: 'The number of nodes in both lists is in the range [0, 50]', type: 'math' },
+                    { text: '-100 <= Node.val <= 100', type: 'math' },
+                    { text: 'Both list1 and list2 are sorted in non-decreasing order.', type: 'text' }
                 ]}
             />
 
             <TableOfContents items={[
-                {id: 'recursive-merge', title: 'Approach 1: Using Recursive Merge'},
-                {id: 'iterative-merge', title: 'Approach 2: Using Iterative Merge'},
-            ]}/>
+                { id: 'recursive-merge', title: 'Approach 1: Using Recursive Merge' },
+                { id: 'iterative-merge', title: 'Approach 2: Using Iterative Merge' },
+            ]} />
 
             <section id="recursive-merge">
-                <Title title={"Using Recursive Merge - O(n+m) Time and O(n+m) Space"}/>
+                <Title title={"Using Recursive Merge - O(n+m) Time and O(n+m) Space"} />
 
                 <BlockQuote
                     quote={"The idea is to merge two sorted linked lists using recursion. The base cases handle the scenarios where one of the lists is empty, in which case the other list is returned directly. In the recursive step, the function compares the data of the current nodes of both lists and attaches the smaller node to the merged list. The function then recursively merges the remaining part of the list. This process continues until both lists are fully merged. This approach eliminates the need for extra space and efficiently merges the lists."}
-                    centered italic/>
+                    centered italic />
 
-                <CodeBlock language={"javascript"} code={solutions.merge_two_sorted_lists.recursive_merge.javascript}/>
+                <CodeBlock language={"javascript"} code={solutions.merge_two_sorted_lists.recursive_merge.javascript} />
 
-                <LinkedListMergeUsingRecursiveVisualizer/>
+                <LinkedListMergeUsingRecursiveVisualizer />
             </section>
 
             <section id="iterative-merge">
 
-                <Title title={"Using Iterative Merge - O(n+m) Time and O(1) Space"}/>
+                <Title title={"Using Iterative Merge - O(n+m) Time and O(1) Space"} />
 
                 <BlockQuote
                     quote={"The idea is to iteratively merge two sorted linked lists using a dummy node to simplify the process. A current pointer tracks the last node of the merged list. We compare the nodes from both lists and append the smaller node to the merged list. Once one list is fully traversed, the remaining nodes from the other list are appended. The merged list is returned starting from the node after the dummy node."}
-                    centered italic/>
+                    centered italic />
 
-                <CodeBlock language={"javascript"} code={solutions.merge_two_sorted_lists.iterative_merge.javascript}/>
+                <CodeBlock language={"javascript"} code={solutions.merge_two_sorted_lists.iterative_merge.javascript} />
 
-                <LinkedListMergeUsingIterativeVisualizer/>
+                <LinkedListMergeUsingIterativeVisualizer />
             </section>
 
-            <References references={questions.merge_two_sorted_lists}/>
+            <References references={questionsReferences.merge_two_sorted_lists} />
         </div>
     );
 };

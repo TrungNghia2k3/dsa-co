@@ -1,7 +1,5 @@
 // Components
-import Paragraph from "../../components/Paragraph.jsx";
-import ExampleList from "../../components/ExampleList.jsx";
-import ConstraintsBullet from "../../components/ConstraintsBullet.jsx";
+import {Paragraph, ExampleList, ConstraintsBullet} from "../../components";
 
 const PlusOne = () => {
     const examples = [

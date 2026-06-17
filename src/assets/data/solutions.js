@@ -1,99 +1,547 @@
 export const solutions =
 {
-    two_sum: {
+    backspace_string_compare: {
+        "stack": {
+            "javascript": `/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var backspaceCompare = function (s, t) {
+    const stack_s = [];
+    const stack_t = [];
+
+    // handling string s
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] === '#') {
+            stack_s.pop();
+        } else {
+            stack_s.push(s[i]);
+        }
+    }
+
+    // handling string t
+    for (let i = 0; i < t.length; i++) {
+        if (t[i] === '#') {
+            stack_t.pop();
+        } else {
+            stack_t.push(t[i]);
+        }
+    }
+
+    // Compare 2 stacks if the elements are the same then return true, otherwise return false
+    if (stack_s.length !== stack_t.length) return false;
+
+    for (let i = 0; i < stack_s.length; i++) {
+        if (stack_s[i] !== stack_t[i]) return false;
+    }
+
+    return true;
+};`
+        },
+        "two_pointers": {
+            "javascript": `/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var backspaceCompare = function (s, t) {
+    let i = s.length - 1; // index of string s
+    let j = t.length - 1; // index of string t
+
+    // Iterate from the end of strings s and t, because two strings are considered equal 
+    // when their last elements are equal and we need to skip the characters deleted by the '#' character
+    while (i >= 0 || j >= 0) {
+        // Find the next valid character in string s, if we encounter a '#', we skip the previous character
+        let skipS = 0;
+        while (i >= 0 && (s[i] === '#' || skipS > 0)) {
+            if (s[i] === '#') {
+                skipS++;
+            } else {
+                skipS--;
+            }
+            i--;
+        }
+
+        // Find the next valid character in string t, if we encounter a '#', we skip the previous character  
+        let skipT = 0;
+        while (j >= 0 && (t[j] === '#' || skipT > 0)) {
+            if (t[j] === '#') {
+                skipT++;
+            } else {
+                skipT--;
+            }
+            j--;
+        }
+
+        // Compare valid characters of strings s and t
+        // If they are not equal, return false
+        if (i >= 0 && j >= 0 && s[i] !== t[j]) return false;
+        
+        // If one string is finished but the other isn't, return false
+        if ((i >= 0) !== (j >= 0)) return false;
+
+        i--;
+        j--;
+    }
+
+    return true;
+};`
+        },
+        "reverse_iteration": {
+            "javascript": `class Solution {
+    /**
+     * @param {string} s
+     * @param {string} t
+     * @return {boolean}
+     */
+    backspaceCompare(s, t) {
+        const convert = (s) => {
+            const res = [];
+            let backspace = 0;
+            for (let i = s.length - 1; i >= 0; i--) {
+                if (s[i] === '#') {
+                    backspace++;
+                } else if (backspace > 0) {
+                    backspace--;
+                } else {
+                    res.push(s[i]);
+                }
+            }
+            return res.join('');
+        };
+        return convert(s) === convert(t);
+    }
+}`
+        }
+    },
+    baseball_game: {
+        "stack": {
+            "javascript": `/**
+ * @param {string[]} operations
+ * @return {number}
+ */
+var calPoints = function (operations) {
+    let sum = 0;
+    const stack = [];
+
+    for (const operation of operations) {
+        if (operation === 'C') {
+            // Cancel: Remove the last score and subtract from sum
+            sum -= stack.pop();
+            continue;
+        }
+
+        if (operation === 'D') {
+            // Double: Double the last score, add to stack and sum
+            const val = stack[stack.length - 1] * 2;
+            stack.push(val);
+            sum += val;
+            continue;
+        }
+
+        if (operation === '+') {
+            // Add: Sum of last two scores, add to stack and sum
+            const val = stack[stack.length - 1] + stack[stack.length - 2];
+            stack.push(val);
+            sum += val;
+            continue;
+        }
+
+        // It's a number: Add to stack and sum
+        stack.push(+operation);
+        sum += +operation;
+    }
+
+    return sum;
+};`
+        }
+    },
+    container_with_most_water: {
         "brute_force": {
-            "javascript": `var twoSum = function(nums, target) {
-        // 1. Iterate over every possible number pair
+            "javascript": `class Solution {
+    /**
+     * @param {number[]} heights
+     * @return {number}
+     */
+    maxArea(heights) {
+        let res = 0;
+        for (let i = 0; i < heights.length; i++) {
+            for (let j = i + 1; j < heights.length; j++) {
+                res = Math.max(res, Math.min(heights[i], heights[j]) * (j - i));
+            }
+        }
+        return res;
+    }
+}`
+        },
+        "two_pointers": {
+            "javascript": `class Solution {
+    /**
+     * @param {number[]} heights
+     * @return {number}
+     */
+    maxArea(heights) {
+        let l = 0;
+        let r = heights.length - 1;
+        let res = 0;
+
+        while (l < r) {
+            const area = Math.min(heights[l], heights[r]) * (r - l);
+            res = Math.max(res, area);
+            if (heights[l] <= heights[r]) {
+                l++;
+            } else {
+                r--;
+            }
+        }
+        return res;
+    }
+}`
+        }
+    },
+    first_unique_character_in_a_string: {
+        "queue_frequency": {
+            "javascript": `/**
+ * @param {string} s
+ * @return {number}
+ */
+var firstUniqChar = function (s) {
+    const MAX_CHAR = 26; // the number of lowercase letters in the English alphabet
+    const count = new Array(MAX_CHAR).fill(0); // count character frequency
+    const queue = []; // queue to store [character, index]
+
+    // Iterate through string s
+    for (let i = 0; i < s.length; i++) {
+        const ch = s[i];
+        const idx = ch.charCodeAt(0) - 'a'.charCodeAt(0);
+
+        count[idx]++;
+
+        // Add [character, index] to queue
+        queue.push([ch, i]);
+
+        // Remove elements from the front of the queue if they have been repeated
+        while (queue.length > 0) {
+            const [frontChar] = queue[0];
+            const frontIdx = frontChar.charCodeAt(0) - 'a'.charCodeAt(0);
+            if (count[frontIdx] > 1) {
+                queue.shift(); // remove
+            } else {
+                break; // found the first non-repeating character
+            }
+        }
+    }
+
+    // Return the result
+    return queue.length === 0 ? -1 : queue[0][1];
+};`,
+        },
+        "hash_map": {
+            "javascript": `class Solution {
+    /**
+     * @param {string} s
+     * @return {number}
+     */
+    firstUniqChar(s) {
+        const count = new Map();
+        for (const c of s) {
+            count.set(c, (count.get(c) || 0) + 1);
+        }
+
+        for (let i = 0; i < s.length; i++) {
+            if (count.get(s[i]) === 1) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}`
+        },
+        "brute_force": {
+            "javascript": `class Solution {
+    /**
+     * @param {string} s
+     * @return {number}
+     */
+    firstUniqChar(s) {
+        for (let i = 0; i < s.length; i++) {
+            let flag = true;
+            for (let j = 0; j < s.length; j++) {
+                if (i === j) continue;
+                if (s[i] === s[j]) {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag) return i;
+        }
+        return -1;
+    }
+}`
+        },
+        "iteration": {
+            "javascript": `class Solution {
+    /**
+     * @param {string} s
+     * @return {number}
+     */
+    firstUniqChar(s) {
+        let res = s.length;
+
+        for (let ch = 'a'.charCodeAt(0); ch <= 'z'.charCodeAt(0); ch++) {
+            const char = String.fromCharCode(ch);
+            const firstIndex = s.indexOf(char);
+            if (firstIndex !== -1 && s.lastIndexOf(char) === firstIndex) {
+                res = Math.min(res, firstIndex);
+            }
+        }
+
+        return res === s.length ? -1 : res;
+    }
+}`}
+    },
+    find_first_and_last_position_of_element_in_sorted_array: {
+        "brute_force": {
+            "javascript": `class Solution {
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number[]}
+     */
+    searchRange(nums, target) {
+        let res = [-1, -1];
+
         for (let i = 0; i < nums.length; i++) {
-            // j is always ahead of i so that we don't re-evaluate already evaluated sums
-            for (let j = i + 1; j < nums.length; j++) {
-                // 2. Check if a given pair adds up to our target
-                if (nums[i] + nums[j] == target) {
-                    // Return the indices when a pair has been found
-                    return [i, j];
+            if (nums[i] === target) {
+                if (res[0] === -1) {
+                    res[0] = res[1] = i;
+                } else {
+                    res[1] = i;
                 }
             }
         }
-};`
+
+        return res;
+    }
+}`
         },
-        "hash_table": {
-            "javascript": `var twoSum = function(nums, target) {
-        // Our hash table that stores at which index the number is at
-        numToIndex = {}
-    
-        // 1. Iterate over every number in the array
-        for (let i = 0; i < nums.length; i++) {
-            // 2. Calculate the complement that would sum to our target
-            complement = target - nums[i];
-            
-            // 3. Check if that complement is in our hash table
-            if (numToIndex.hasOwnProperty(complement)) {
-                return [numToIndex[complement], i];
+        "binary_search": {
+            "javascript": `class Solution {
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number[]}
+     */
+    searchRange(nums, target) {
+        let left = this.binarySearch(nums, target, true);
+        let right = this.binarySearch(nums, target, false);
+        return [left, right];
+    }
+
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @param {boolean} leftBias
+     * @return {number}
+     */
+    binarySearch(nums, target, leftBias) {
+        let l = 0,
+            r = nums.length - 1,
+            i = -1;
+        while (l <= r) {
+            let m = Math.floor((l + r) / 2);
+            if (target > nums[m]) {
+                l = m + 1;
+            } else if (target < nums[m]) {
+                r = m - 1;
+            } else {
+                i = m;
+                if (leftBias) {
+                    r = m - 1;
+                } else {
+                    l = m + 1;
+                }
             }
-            
-            // 4. Add the current number to our hash table
-            numToIndex[nums[i]] = i;
         }
-};`
+        return i;
+    }
+}`
         },
+        "in_built_function": {
+            "javascript": `class Solution {
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number[]}
+     */
+    searchRange(nums, target) {
+        let left = nums.indexOf(target);
+        let right = nums.lastIndexOf(target);
+
+        return left === -1 ? [-1, -1] : [left, right];
+    }
+}`
+        }
     },
-    remove_element: {
+    four_sum: {
         "brute_force": {
             "javascript": `class Solution {
     /**
      * @param {number[]} nums
-     * @param {number} val
-     * @return {number}
+     * @param {number} target
+     * @return {number[][]}
      */
-    removeElement(nums, val) {
-        const tmp = [];
+    fourSum(nums, target) {
+        let n = nums.length;
+        nums.sort((a, b) => a - b);
+        let res = new Set();
+
+        for (let a = 0; a < n; a++) {
+            for (let b = a + 1; b < n; b++) {
+                for (let c = b + 1; c < n; c++) {
+                    for (let d = c + 1; d < n; d++) {
+                        if (nums[a] + nums[b] + nums[c] + nums[d] === target) {
+                            res.add(JSON.stringify([nums[a], nums[b], nums[c], nums[d]]));
+                        }
+                    }
+                }
+            }
+        }
+
+        return Array.from(res).map(JSON.parse);
+    }
+}`
+        },
+        "hash_map": {
+            "javascript": `class Solution {
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number[][]}
+     */
+    fourSum(nums, target) {
+        nums.sort((a, b) => a - b);
+        const count = new Map();
         for (const num of nums) {
-            if (num !== val) {
-                tmp.push(num);
-            }
+            count.set(num, (count.get(num) || 0) + 1);
         }
-        for (let i = 0; i < tmp.length; i++) {
-            nums[i] = tmp[i];
-        }
-        return tmp.length;
-    }
-}`
-        },
-        "two_pointers_i": {
-            "javascript": `class Solution {
-    /**
-     * @param {number[]} nums
-     * @param {number} val
-     * @return {number}
-     */
-    removeElement(nums, val) {
-        let k = 0;
+        const res = [];
+
         for (let i = 0; i < nums.length; i++) {
-            if (nums[i] !== val) {
-                nums[k++] = nums[i];
+            count.set(nums[i], count.get(nums[i]) - 1);
+            if (i > 0 && nums[i] === nums[i - 1]) continue;
+
+            for (let j = i + 1; j < nums.length; j++) {
+                count.set(nums[j], count.get(nums[j]) - 1);
+                if (j > i + 1 && nums[j] === nums[j - 1]) continue;
+
+                for (let k = j + 1; k < nums.length; k++) {
+                    count.set(nums[k], count.get(nums[k]) - 1);
+                    if (k > j + 1 && nums[k] === nums[k - 1]) continue;
+
+                    const fourth = target - (nums[i] + nums[j] + nums[k]);
+                    if ((count.get(fourth) || 0) > 0) {
+                        res.push([nums[i], nums[j], nums[k], fourth]);
+                    }
+                }
+
+                for (let k = j + 1; k < nums.length; k++) {
+                    count.set(nums[k], count.get(nums[k]) + 1);
+                }
+            }
+
+            for (let j = i + 1; j < nums.length; j++) {
+                count.set(nums[j], count.get(nums[j]) + 1);
             }
         }
-        return k;
+
+        return res;
     }
 }`
         },
-        "two_pointers_ii": {
+        "two_pointers": {
             "javascript": `class Solution {
     /**
      * @param {number[]} nums
-     * @param {number} val
-     * @return {number}
+     * @param {number} target
+     * @return {number[][]}
      */
-    removeElement(nums, val) {
-        let i = 0, n = nums.length;
-        while (i < n) {
-            if (nums[i] == val) {
-                nums[i] = nums[--n];
-            } else {
-                i++;
+    fourSum(nums, target) {
+        nums.sort((a, b) => a - b);
+        const res = [];
+        const n = nums.length;
+
+        for (let i = 0; i < n; i++) {
+            if (i > 0 && nums[i] === nums[i - 1]) continue;
+
+            for (let j = i + 1; j < n; j++) {
+                if (j > i + 1 && nums[j] === nums[j - 1]) continue;
+
+                let left = j + 1, right = n - 1;
+                while (left < right) {
+                    const sum = nums[i] + nums[j] + nums[left] + nums[right];
+                    if (sum === target) {
+                        res.push([nums[i], nums[j], nums[left], nums[right]]);
+                        left++;
+                        right--;
+                        while (left < right && nums[left] === nums[left - 1]) left++;
+                        while (left < right && nums[right] === nums[right + 1]) right--;
+                    } else if (sum < target) {
+                        left++;
+                    } else {
+                        right--;
+                    }
+                }
             }
         }
-        return n;
+
+        return res;
+    }
+}`
+        },
+        "k_sum_two_pointers": {
+            "javascript": `class Solution {
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number[][]}
+     */
+    fourSum(nums, target) {
+        nums.sort((a, b) => a - b);
+        const res = [];
+        const quad = [];
+
+        const kSum = (k, start, target) => {
+            if (k === 2) {
+                let l = start, r = nums.length - 1;
+                while (l < r) {
+                    const sum = nums[l] + nums[r];
+                    if (sum < target) {
+                        l++;
+                    } else if (sum > target) {
+                        r--;
+                    } else {
+                        res.push([...quad, nums[l], nums[r]]);
+                        l++;
+                        r--;
+                        while (l < r && nums[l] === nums[l - 1]) l++;
+                        while (l < r && nums[r] === nums[r + 1]) r--;
+                    }
+                }
+                return;
+            }
+
+            for (let i = start; i < nums.length - k + 1; i++) {
+                if (i > start && nums[i] === nums[i - 1]) continue;
+                quad.push(nums[i]);
+                kSum(k - 1, i + 1, target - nums[i]);
+                quad.pop();
+            }
+        };
+
+        kSum(4, 0, target);
+        return res;
     }
 }`
         }
@@ -228,6 +676,245 @@ let res = sortedMerge(head1, head2);
 printList(res);`
         }
     },
+    number_of_recent_calls: {
+        "queue": {
+            "javascript": `class RecentCounter {
+    constructor() {
+        this.queue = [];
+    }
+
+    ping(t) {
+        // Add the new request to the queue
+        this.queue.push(t);
+        
+        // Remove requests that are older than (t - 3000)
+        // Keep only requests in the range [t - 3000, t]
+        while (this.queue.length > 0 && this.queue[0] < t - 3000) {
+            this.queue.shift();
+        }
+
+        // Return the number of requests in the past 3000ms
+        return this.queue.length;
+    }
+}
+
+/**
+ * Your RecentCounter object will be instantiated and called as such:
+ * var obj = new RecentCounter();
+ * var param_1 = obj.ping(t);
+ */`
+        }
+    },
+    permutations: {
+        "recursion": {
+            "javascript": `class Solution {
+    /**
+     * @param {number[]} nums
+     * @return {number[][]}
+     */
+    permute(nums) {
+        if (nums.length === 0) {
+            return [[]];
+        }
+
+        let perms = this.permute(nums.slice(1));
+        let res = [];
+        for (let p of perms) {
+            for (let i = 0; i <= p.length; i++) {
+                let p_copy = p.slice();
+                p_copy.splice(i, 0, nums[0]);
+                res.push(p_copy);
+            }
+        }
+        return res;
+    }
+}`
+        },
+        "iteration": {
+            "javascript": `class Solution {
+    /**
+     * @param {number[]} nums
+     * @return {number[][]}
+     */
+    permute(nums) {
+        let perms = [[]];
+        for (let num of nums) {
+            let new_perms = [];
+            for (let p of perms) {
+                for (let i = 0; i <= p.length; i++) {
+                    let p_copy = p.slice();
+                    p_copy.splice(i, 0, num);
+                    new_perms.push(p_copy);
+                }
+            }
+            perms = new_perms;
+        }
+        return perms;
+    }
+}`
+        },
+        "backtracking": {
+            "javascript": `class Solution {
+    /**
+     * @param {number[]} nums
+     * @return {number[][]}
+     */
+    permute(nums) {
+        let res = [];
+        backtrack([], nums, new Array(nums.length).fill(false));
+        return res;
+        
+        function backtrack(perm, nums, pick) {
+            if (perm.length === nums.length) {
+                res.push([...perm]);
+                return;
+            }
+            for (let i = 0; i < nums.length; i++) {
+                if (!pick[i]) {
+                    perm.push(nums[i]);
+                    pick[i] = true;
+                    backtrack(perm, nums, pick);
+                    perm.pop();
+                    pick[i] = false;
+                }
+            }
+        }
+    }
+}`
+        }
+    },
+    remove_element: {
+        "brute_force": {
+            "javascript": `class Solution {
+    /**
+     * @param {number[]} nums
+     * @param {number} val
+     * @return {number}
+     */
+    removeElement(nums, val) {
+        const tmp = [];
+        for (const num of nums) {
+            if (num !== val) {
+                tmp.push(num);
+            }
+        }
+        for (let i = 0; i < tmp.length; i++) {
+            nums[i] = tmp[i];
+        }
+        return tmp.length;
+    }
+}`
+        },
+        "two_pointers_i": {
+            "javascript": `class Solution {
+    /**
+     * @param {number[]} nums
+     * @param {number} val
+     * @return {number}
+     */
+    removeElement(nums, val) {
+        let k = 0;
+        for (let i = 0; i < nums.length; i++) {
+            if (nums[i] !== val) {
+                nums[k++] = nums[i];
+            }
+        }
+        return k;
+    }
+}`
+        },
+        "two_pointers_ii": {
+            "javascript": `class Solution {
+    /**
+     * @param {number[]} nums
+     * @param {number} val
+     * @return {number}
+     */
+    removeElement(nums, val) {
+        let i = 0, n = nums.length;
+        while (i < n) {
+            if (nums[i] == val) {
+                nums[i] = nums[--n];
+            } else {
+                i++;
+            }
+        }
+        return n;
+    }
+}`
+        }
+    },
+    search_in_rotated_sorted_array: {
+        "brute_force": {
+            "javascript": `class Solution {
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number}
+     */
+    search(nums, target) {
+        for (let i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}`
+        },
+        "binary_search": {
+            "javascript": `class Solution {
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number}
+     */
+    search(nums, target) {
+        let l = 0;
+        let r = nums.length - 1;
+
+        while (l < r) {
+            const m = Math.floor((l + r) / 2);
+            if (nums[m] > nums[r]) {
+                l = m + 1;
+            } else {
+                r = m;
+            }
+        }
+
+        const pivot = l;
+
+        const result = this.binarySearch(nums, target, 0, pivot - 1);
+        if (result !== -1) {
+            return result;
+        }
+
+        return this.binarySearch(nums, target, pivot, nums.length - 1);
+    }
+
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @param {number} left
+     * @param {number} right
+     * @return {number}
+     */
+    binarySearch(nums, target, left, right) {
+        while (left <= right) {
+            const mid = Math.floor((left + right) / 2);
+            if (nums[mid] === target) {
+                return mid;
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
+}`
+        }
+    },
     valid_parentheses: {
         "stack": {
             "javascript": `class Solution {
@@ -281,265 +968,118 @@ printList(res);`
 }`
         },
     },
-    backspace_string_compare: {
-        "stack": {
-            "javascript": `/**
- * @param {string} s
- * @param {string} t
- * @return {boolean}
- */
-var backspaceCompare = function (s, t) {
-    const stack_s = [];
-    const stack_t = [];
-
-    // handling string s
-    for (let i = 0; i < s.length; i++) {
-        if (s[i] === '#') {
-            stack_s.pop();
-        } else {
-            stack_s.push(s[i]);
-        }
-    }
-
-    // handling string t
-    for (let i = 0; i < t.length; i++) {
-        if (t[i] === '#') {
-            stack_t.pop();
-        } else {
-            stack_t.push(t[i]);
-        }
-    }
-
-    // Compare 2 stacks if the elements are the same then return true, otherwise return false
-    if (stack_s.length !== stack_t.length) return false;
-
-    for (let i = 0; i < stack_s.length; i++) {
-        if (stack_s[i] !== stack_t[i]) return false;
-    }
-
-    return true;
-};`
-        },
-        "two_pointers": {
-            "javascript": `/**
- * @param {string} s
- * @param {string} t
- * @return {boolean}
- */
-var backspaceCompare = function (s, t) {
-    let i = s.length - 1; // index of string s
-    let j = t.length - 1; // index of string t
-
-    // Iterate from the end of strings s and t, because two strings are considered equal 
-    // when their last elements are equal and we need to skip the characters deleted by the '#' character
-    while (i >= 0 || j >= 0) {
-        // Find the next valid character in string s, if we encounter a '#', we skip the previous character
-        let skipS = 0;
-        while (i >= 0 && (s[i] === '#' || skipS > 0)) {
-            if (s[i] === '#') {
-                skipS++;
-            } else {
-                skipS--;
-            }
-            i--;
-        }
-
-        // Find the next valid character in string t, if we encounter a '#', we skip the previous character  
-        let skipT = 0;
-        while (j >= 0 && (t[j] === '#' || skipT > 0)) {
-            if (t[j] === '#') {
-                skipT++;
-            } else {
-                skipT--;
-            }
-            j--;
-        }
-
-        // Compare valid characters of strings s and t
-        // If they are not equal, return false
-        if (i >= 0 && j >= 0 && s[i] !== t[j]) return false;
-        
-        // If one string is finished but the other isn't, return false
-        if ((i >= 0) !== (j >= 0)) return false;
-
-        i--;
-        j--;
-    }
-
-    return true;
-};`
-        }
-    },
-    baseball_game: {
-        "stack": {
-            "javascript": `/**
- * @param {string[]} operations
- * @return {number}
- */
-var calPoints = function (operations) {
-    let sum = 0;
-    const stack = [];
-
-    for (const operation of operations) {
-        if (operation === 'C') {
-            // Cancel: Remove the last score and subtract from sum
-            sum -= stack.pop();
-            continue;
-        }
-
-        if (operation === 'D') {
-            // Double: Double the last score, add to stack and sum
-            const val = stack[stack.length - 1] * 2;
-            stack.push(val);
-            sum += val;
-            continue;
-        }
-
-        if (operation === '+') {
-            // Add: Sum of last two scores, add to stack and sum
-            const val = stack[stack.length - 1] + stack[stack.length - 2];
-            stack.push(val);
-            sum += val;
-            continue;
-        }
-
-        // It's a number: Add to stack and sum
-        stack.push(+operation);
-        sum += +operation;
-    }
-
-    return sum;
-};`
-        }
-    },
-    first_unique_character_in_a_string: {
-        "queue_frequency": {
-            "javascript": `/**
- * @param {string} s
- * @return {number}
- */
-var firstUniqChar = function (s) {
-    const MAX_CHAR = 26; // the number of lowercase letters in the English alphabet
-    const count = new Array(MAX_CHAR).fill(0); // count character frequency
-    const queue = []; // queue to store [character, index]
-
-    // Iterate through string s
-    for (let i = 0; i < s.length; i++) {
-        const ch = s[i];
-        const idx = ch.charCodeAt(0) - 'a'.charCodeAt(0);
-
-        count[idx]++;
-
-        // Add [character, index] to queue
-        queue.push([ch, i]);
-
-        // Remove elements from the front of the queue if they have been repeated
-        while (queue.length > 0) {
-            const [frontChar] = queue[0];
-            const frontIdx = frontChar.charCodeAt(0) - 'a'.charCodeAt(0);
-            if (count[frontIdx] > 1) {
-                queue.shift(); // remove
-            } else {
-                break; // found the first non-repeating character
-            }
-        }
-    }
-
-    // Return the result
-    return queue.length === 0 ? -1 : queue[0][1];
-};`,
-        },
-        "hash_map": {
-            "javascript": `class Solution {
-    /**
-     * @param {string} s
-     * @return {number}
-     */
-    firstUniqChar(s) {
-        const count = new Map();
-        for (const c of s) {
-            count.set(c, (count.get(c) || 0) + 1);
-        }
-
-        for (let i = 0; i < s.length; i++) {
-            if (count.get(s[i]) === 1) {
-                return i;
-            }
-        }
-        return -1;
-    }
-}`
-        },
+    valid_sudoku: {
         "brute_force": {
             "javascript": `class Solution {
     /**
-     * @param {string} s
-     * @return {number}
+     * @param {character[][]} board
+     * @return {boolean}
      */
-    firstUniqChar(s) {
-        for (let i = 0; i < s.length; i++) {
-            let flag = true;
-            for (let j = 0; j < s.length; j++) {
-                if (i === j) continue;
-                if (s[i] === s[j]) {
-                    flag = false;
-                    break;
+    isValidSudoku(board) {
+        for (let row = 0; row < 9; row++) {
+            let seen = new Set();
+            for (let i = 0; i < 9; i++) {
+                if (board[row][i] === '.') continue;
+                if (seen.has(board[row][i])) return false;
+                seen.add(board[row][i]);
+            }
+        }
+
+        for (let col = 0; col < 9; col++) {
+            let seen = new Set();
+            for (let i = 0; i < 9; i++) {
+                if (board[i][col] === '.') continue;
+                if (seen.has(board[i][col])) return false;
+                seen.add(board[i][col]);
+            }
+        }
+
+        for (let square = 0; square < 9; square++) {
+            let seen = new Set();
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    let row = Math.floor(square / 3) * 3 + i;
+                    let col = (square % 3) * 3 + j;
+                    if (board[row][col] === '.') continue;
+                    if (seen.has(board[row][col])) return false;
+                    seen.add(board[row][col]);
                 }
             }
-            if (flag) return i;
         }
-        return -1;
+
+        return true;
     }
 }`
         },
-        "iteration": {
+        "hash_set": {
             "javascript": `class Solution {
     /**
-     * @param {string} s
-     * @return {number}
+     * @param {character[][]} board
+     * @return {boolean}
      */
-    firstUniqChar(s) {
-        let res = s.length;
+    isValidSudoku(board) {
+        const cols = new Map();
+        const rows = new Map();
+        const squares = new Map();
 
-        for (let ch = 'a'.charCodeAt(0); ch <= 'z'.charCodeAt(0); ch++) {
-            const char = String.fromCharCode(ch);
-            const firstIndex = s.indexOf(char);
-            if (firstIndex !== -1 && s.lastIndexOf(char) === firstIndex) {
-                res = Math.min(res, firstIndex);
+        for (let r = 0; r < 9; r++) {
+            for (let c = 0; c < 9; c++) {
+                if (board[r][c] === '.') continue;
+
+                const squareKey = Math.floor(r / 3) * 3 + Math.floor(c / 3);
+
+                if (
+                    (rows.get(r) && rows.get(r).has(board[r][c])) ||
+                    (cols.get(c) && cols.get(c).has(board[r][c])) ||
+                    (squares.get(squareKey) &&
+                        squares.get(squareKey).has(board[r][c]))
+                ) {
+                    return false;
+                }
+
+                if (!rows.has(r)) rows.set(r, new Set());
+                if (!cols.has(c)) cols.set(c, new Set());
+                if (!squares.has(squareKey)) squares.set(squareKey, new Set());
+
+                rows.get(r).add(board[r][c]);
+                cols.get(c).add(board[r][c]);
+                squares.get(squareKey).add(board[r][c]);
             }
         }
-
-        return res === s.length ? -1 : res;
+        return true;
     }
-}`}
-    },
-    number_of_recent_calls: {
-        "queue": {
-            "javascript": `class RecentCounter {
-    constructor() {
-        this.queue = [];
-    }
+}`
+        },
+        "bitmask": {
+            "javascript": `class Solution {
+    isValidSudoku(board) {
+        let rows = new Array(9).fill(0);
+        let cols = new Array(9).fill(0);
+        let squares = new Array(9).fill(0);
 
-    ping(t) {
-        // Add the new request to the queue
-        this.queue.push(t);
-        
-        // Remove requests that are older than (t - 3000)
-        // Keep only requests in the range [t - 3000, t]
-        while (this.queue.length > 0 && this.queue[0] < t - 3000) {
-            this.queue.shift();
+        for (let r = 0; r < 9; r++) {
+            for (let c = 0; c < 9; c++) {
+                if (board[r][c] === '.') continue;
+
+                let val = board[r][c] - '1';
+
+                if (
+                    rows[r] & (1 << val) ||
+                    cols[c] & (1 << val) ||
+                    squares[Math.floor(r / 3) * 3 + Math.floor(c / 3)] &
+                        (1 << val)
+                ) {
+                    return false;
+                }
+
+                rows[r] |= 1 << val;
+                cols[c] |= 1 << val;
+                squares[Math.floor(r / 3) * 3 + Math.floor(c / 3)] |= 1 << val;
+            }
         }
-
-        // Return the number of requests in the past 3000ms
-        return this.queue.length;
+        return true;
     }
-}
-
-/**
- * Your RecentCounter object will be instantiated and called as such:
- * var obj = new RecentCounter();
- * var param_1 = obj.ping(t);
- */`
+}`
         }
     },
     three_sum: {
@@ -739,7 +1279,7 @@ var firstUniqChar = function (s) {
      * @return {number}
      */
     threeSumClosest(nums, target) {
-        // Khởi tạo closestSum và minDifference ban đầu.
+        // Declare closestSum và minDifference ban đầu.
         // Luôn đảm bảo mảng nums có ít nhất 3 phần tử theo ràng buộc của bài toán.
         let closestSum = nums[0] + nums[1] + nums[2];
         let minDifference = Math.abs(target - closestSum);
@@ -841,32 +1381,70 @@ function threeSumClosestTwoPointers(nums, target) {
 }`
         }
     },
-    four_sum: {
+    two_sum: {
         "brute_force": {
+            "javascript": `var twoSum = function(nums, target) {
+        // 1. Iterate over every possible number pair
+        for (let i = 0; i < nums.length; i++) {
+            // j is always ahead of i so that we don't re-evaluate already evaluated sums
+            for (let j = i + 1; j < nums.length; j++) {
+                // 2. Check if a given pair adds up to our target
+                if (nums[i] + nums[j] == target) {
+                    // Return the indices when a pair has been found
+                    return [i, j];
+                }
+            }
+        }
+};`
+        },
+        "hash_table": {
+            "javascript": `var twoSum = function(nums, target) {
+        // Our hash table that stores at which index the number is at
+        numToIndex = {}
+    
+        // 1. Iterate over every number in the array
+        for (let i = 0; i < nums.length; i++) {
+            // 2. Calculate the complement that would sum to our target
+            complement = target - nums[i];
+            
+            // 3. Check if that complement is in our hash table
+            if (numToIndex.hasOwnProperty(complement)) {
+                return [numToIndex[complement], i];
+            }
+            
+            // 4. Add the current number to our hash table
+            numToIndex[nums[i]] = i;
+        }
+};`
+        },
+        "sorting": {
             "javascript": `class Solution {
     /**
      * @param {number[]} nums
      * @param {number} target
-     * @return {number[][]}
+     * @return {number[]}
      */
-    fourSum(nums, target) {
-        let n = nums.length;
-        nums.sort((a, b) => a - b);
-        let res = new Set();
-
-        for (let a = 0; a < n; a++) {
-            for (let b = a + 1; b < n; b++) {
-                for (let c = b + 1; c < n; c++) {
-                    for (let d = c + 1; d < n; d++) {
-                        if (nums[a] + nums[b] + nums[c] + nums[d] === target) {
-                            res.add(JSON.stringify([nums[a], nums[b], nums[c], nums[d]]));
-                        }
-                    }
-                }
-            }
+    twoSum(nums, target) {
+        let A = [];
+        for (let i = 0; i < nums.length; i++) {
+            A.push([nums[i], i]);
         }
 
-        return Array.from(res).map(JSON.parse);
+        A.sort((a, b) => a[0] - b[0]);
+
+        let i = 0,
+            j = nums.length - 1;
+        while (i < j) {
+            let cur = A[i][0] + A[j][0];
+            if (cur === target) {
+                return [Math.min(A[i][1], A[j][1]), Math.max(A[i][1], A[j][1])];
+            } else if (cur < target) {
+                i++;
+            } else {
+                j--;
+            }
+        }
+        return [];
     }
 }`
         },
@@ -875,208 +1453,29 @@ function threeSumClosestTwoPointers(nums, target) {
     /**
      * @param {number[]} nums
      * @param {number} target
-     * @return {number[][]}
+     * @return {number[]}
      */
-    fourSum(nums, target) {
-        nums.sort((a, b) => a - b);
-        const count = new Map();
-        for (const num of nums) {
-            count.set(num, (count.get(num) || 0) + 1);
-        }
-        const res = [];
-
+    twoSum(nums, target) {
+        let A = [];
         for (let i = 0; i < nums.length; i++) {
-            count.set(nums[i], count.get(nums[i]) - 1);
-            if (i > 0 && nums[i] === nums[i - 1]) continue;
-
-            for (let j = i + 1; j < nums.length; j++) {
-                count.set(nums[j], count.get(nums[j]) - 1);
-                if (j > i + 1 && nums[j] === nums[j - 1]) continue;
-
-                for (let k = j + 1; k < nums.length; k++) {
-                    count.set(nums[k], count.get(nums[k]) - 1);
-                    if (k > j + 1 && nums[k] === nums[k - 1]) continue;
-
-                    const fourth = target - (nums[i] + nums[j] + nums[k]);
-                    if ((count.get(fourth) || 0) > 0) {
-                        res.push([nums[i], nums[j], nums[k], fourth]);
-                    }
-                }
-
-                for (let k = j + 1; k < nums.length; k++) {
-                    count.set(nums[k], count.get(nums[k]) + 1);
-                }
-            }
-
-            for (let j = i + 1; j < nums.length; j++) {
-                count.set(nums[j], count.get(nums[j]) + 1);
-            }
+            A.push([nums[i], i]);
         }
 
-        return res;
-    }
-}`
-        },
-        "two_pointers": {
-            "javascript": `class Solution {
-    /**
-     * @param {number[]} nums
-     * @param {number} target
-     * @return {number[][]}
-     */
-    fourSum(nums, target) {
-        nums.sort((a, b) => a - b);
-        const res = [];
-        const n = nums.length;
+        A.sort((a, b) => a[0] - b[0]);
 
-        for (let i = 0; i < n; i++) {
-            if (i > 0 && nums[i] === nums[i - 1]) continue;
-
-            for (let j = i + 1; j < n; j++) {
-                if (j > i + 1 && nums[j] === nums[j - 1]) continue;
-
-                let left = j + 1, right = n - 1;
-                while (left < right) {
-                    const sum = nums[i] + nums[j] + nums[left] + nums[right];
-                    if (sum === target) {
-                        res.push([nums[i], nums[j], nums[left], nums[right]]);
-                        left++;
-                        right--;
-                        while (left < right && nums[left] === nums[left - 1]) left++;
-                        while (left < right && nums[right] === nums[right + 1]) right--;
-                    } else if (sum < target) {
-                        left++;
-                    } else {
-                        right--;
-                    }
-                }
+        let i = 0,
+            j = nums.length - 1;
+        while (i < j) {
+            let cur = A[i][0] + A[j][0];
+            if (cur === target) {
+                return [Math.min(A[i][1], A[j][1]), Math.max(A[i][1], A[j][1])];
+            } else if (cur < target) {
+                i++;
+            } else {
+                j--;
             }
         }
-
-        return res;
-    }
-}`
-        },
-        "k_sum_two_pointers": {
-            "javascript": `class Solution {
-    /**
-     * @param {number[]} nums
-     * @param {number} target
-     * @return {number[][]}
-     */
-    fourSum(nums, target) {
-        nums.sort((a, b) => a - b);
-        const res = [];
-        const quad = [];
-
-        const kSum = (k, start, target) => {
-            if (k === 2) {
-                let l = start, r = nums.length - 1;
-                while (l < r) {
-                    const sum = nums[l] + nums[r];
-                    if (sum < target) {
-                        l++;
-                    } else if (sum > target) {
-                        r--;
-                    } else {
-                        res.push([...quad, nums[l], nums[r]]);
-                        l++;
-                        r--;
-                        while (l < r && nums[l] === nums[l - 1]) l++;
-                        while (l < r && nums[r] === nums[r + 1]) r--;
-                    }
-                }
-                return;
-            }
-
-            for (let i = start; i < nums.length - k + 1; i++) {
-                if (i > start && nums[i] === nums[i - 1]) continue;
-                quad.push(nums[i]);
-                kSum(k - 1, i + 1, target - nums[i]);
-                quad.pop();
-            }
-        };
-
-        kSum(4, 0, target);
-        return res;
-    }
-}`
-        }
-    },
-    permutations: {
-        "recursion": {
-            "javascript": `class Solution {
-    /**
-     * @param {number[]} nums
-     * @return {number[][]}
-     */
-    permute(nums) {
-        if (nums.length === 0) {
-            return [[]];
-        }
-
-        let perms = this.permute(nums.slice(1));
-        let res = [];
-        for (let p of perms) {
-            for (let i = 0; i <= p.length; i++) {
-                let p_copy = p.slice();
-                p_copy.splice(i, 0, nums[0]);
-                res.push(p_copy);
-            }
-        }
-        return res;
-    }
-}`
-        },
-        "iteration": {
-            "javascript": `class Solution {
-    /**
-     * @param {number[]} nums
-     * @return {number[][]}
-     */
-    permute(nums) {
-        let perms = [[]];
-        for (let num of nums) {
-            let new_perms = [];
-            for (let p of perms) {
-                for (let i = 0; i <= p.length; i++) {
-                    let p_copy = p.slice();
-                    p_copy.splice(i, 0, num);
-                    new_perms.push(p_copy);
-                }
-            }
-            perms = new_perms;
-        }
-        return perms;
-    }
-}`
-        },
-        "backtracking": {
-            "javascript": `class Solution {
-    /**
-     * @param {number[]} nums
-     * @return {number[][]}
-     */
-    permute(nums) {
-        let res = [];
-        backtrack([], nums, new Array(nums.length).fill(false));
-        return res;
-        
-        function backtrack(perm, nums, pick) {
-            if (perm.length === nums.length) {
-                res.push([...perm]);
-                return;
-            }
-            for (let i = 0; i < nums.length; i++) {
-                if (!pick[i]) {
-                    perm.push(nums[i]);
-                    pick[i] = true;
-                    backtrack(perm, nums, pick);
-                    perm.pop();
-                    pick[i] = false;
-                }
-            }
-        }
+        return [];
     }
 }`
         }

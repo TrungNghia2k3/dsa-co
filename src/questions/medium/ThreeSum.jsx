@@ -1,20 +1,12 @@
 // Components
-import Bullet from "../../components/Bullet.jsx";
-import CodeBlock from "../../components/CodeBlock.jsx";
-import Heading from "../../components/Heading.jsx";
-import Paragraph from "../../components/Paragraph.jsx";
-import TableOfContents from "../../components/TableOfContents.jsx";
-import ExampleList from "../../components/ExampleList.jsx";
-import ConstraintsBullet from "../../components/ConstraintsBullet.jsx";
-import References from "../../components/References.jsx";
+import { Bullet, CodeBlock, Heading, Paragraph, TableOfContents, ExampleList, ConstraintsBullet, References } from "../../components";
 
 // Visualizers
 import ThreeSumBruteForceVisualizer from "../../visualizer/problem/three-sum/ThreeSumBruteForceVisualizer.jsx";
 import ThreeSumTwoPointersVisualizer from "../../visualizer/problem/three-sum/ThreeSumTwoPointersVisualizer.jsx";
 
 // Assets
-import { solutions } from "../../assets/data/solutions.js";
-import { questions } from "../../assets/data/references.js";
+import { solutions, questions } from "../../assets/data";
 
 const ThreeSum = () => {
 

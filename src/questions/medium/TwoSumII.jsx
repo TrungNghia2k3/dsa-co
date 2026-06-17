@@ -1,9 +1,5 @@
 // Components
-import Bullet from "../../components/Bullet.jsx";
-import CodeBlock from "../../components/CodeBlock.jsx";
-import Heading from "../../components/Heading.jsx";
-import Paragraph from "../../components/Paragraph.jsx";
-import TableOfContents from "../../components/TableOfContents.jsx";
+import { Bullet, CodeBlock, Heading, Paragraph, TableOfContents } from "../../components";
 
 // Visualizers
 import TwoSumIIBruteForceVisualizer from "../../visualizer/problem/two-sum-ii/TwoSumIIBruteForceVisualizer.jsx";
@@ -12,7 +8,7 @@ import TwoSumIIHashMapVisualizer from "../../visualizer/problem/two-sum-ii/TwoSu
 import TwoSumIITwoPointersVisualizer from "../../visualizer/problem/two-sum-ii/TwoSumIITwoPointersVisualizer.jsx";
 
 // Assets
-import { solutions } from "../../assets/data/solutions.js";
+import { solutions } from "../../assets/data";
 
 const TwoSumII = () => {
     return (
@@ -32,7 +28,7 @@ const TwoSumII = () => {
 
             <section id="problem-analysis">
                 <Heading heading={"Problem Analysis"} />
-                
+
                 <Paragraph content={"Two Sum II builds upon the classic Two Sum problem with a crucial advantage: the input array is already sorted. This constraint opens up more efficient solutions that leverage the sorted property."} />
 
                 <Bullet
@@ -56,7 +52,7 @@ const TwoSumII = () => {
 
             <section id="approach-1-brute-force">
                 <Heading heading={"Approach 1: Brute Force"} />
-                
+
                 <Paragraph content={"The brute force approach checks every possible pair of numbers to find the target sum. While not optimal, it's important to understand as a baseline."} />
 
                 <Bullet
@@ -75,17 +71,17 @@ const TwoSumII = () => {
                         "Space Complexity: O(1) - only using constant extra space"
                     ]} />
 
-                <CodeBlock 
-                    language="javascript" 
-                    code={solutions.two_sum_ii.brute_force.javascript} 
+                <CodeBlock
+                    language="javascript"
+                    code={solutions.two_sum_ii.brute_force.javascript}
                 />
-                
+
                 <TwoSumIIBruteForceVisualizer />
             </section>
 
             <section id="approach-2-binary-search">
                 <Heading heading={"Approach 2: Binary Search"} />
-                
+
                 <Paragraph content={"This approach leverages the sorted array property by using binary search to find the complement for each element."} />
 
                 <Bullet
@@ -104,9 +100,9 @@ const TwoSumII = () => {
                         "Space Complexity: O(1) - only using constant extra space"
                     ]} />
 
-                <CodeBlock 
-                    language="javascript" 
-                    code={solutions.two_sum_ii.binary_search.javascript} 
+                <CodeBlock
+                    language="javascript"
+                    code={solutions.two_sum_ii.binary_search.javascript}
                 />
 
                 <TwoSumIIBinarySearchVisualizer />
@@ -114,7 +110,7 @@ const TwoSumII = () => {
 
             <section id="approach-3-hash-map">
                 <Heading heading={"Approach 3: Hash Map"} />
-                
+
                 <Paragraph content={"The hash map approach provides O(n) time complexity by storing seen elements and their indices for quick complement lookup."} />
 
                 <Bullet
@@ -134,17 +130,17 @@ const TwoSumII = () => {
                         "Space Complexity: O(n) - hash map can store up to n elements"
                     ]} />
 
-                <CodeBlock 
-                    language="javascript" 
-                    code={solutions.two_sum_ii.hash_map.javascript} 
+                <CodeBlock
+                    language="javascript"
+                    code={solutions.two_sum_ii.hash_map.javascript}
                 />
-                
+
                 <TwoSumIIHashMapVisualizer />
             </section>
 
             <section id="approach-4-two-pointers">
                 <Heading heading={"Approach 4: Two Pointers (Optimal)"} />
-                
+
                 <Paragraph content={"The two pointers approach is the optimal solution for this problem, taking advantage of the sorted array to achieve O(n) time with O(1) space."} />
 
                 <Bullet
@@ -174,9 +170,9 @@ const TwoSumII = () => {
                         "Space Complexity: O(1) - only using two pointers"
                     ]} />
 
-                <CodeBlock 
-                    language="javascript" 
-                    code={solutions.two_sum_ii.two_pointers.javascript} 
+                <CodeBlock
+                    language="javascript"
+                    code={solutions.two_sum_ii.two_pointers.javascript}
                 />
 
                 <TwoSumIITwoPointersVisualizer />

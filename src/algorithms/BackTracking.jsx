@@ -1,17 +1,11 @@
-// Componets
-import Heading from "../components/Heading.jsx";
-import Paragraph from "../components/Paragraph.jsx";
-import Image from "../components/Image.jsx";
-import Bullet from "../components/Bullet.jsx";
-import TableOfContents from "../components/TableOfContents.jsx";
-import References from "../components/References.jsx";
+// Components
+import { Heading, Paragraph, Image, Bullet, TableOfContents, References } from "../components";
 
 // Visualizers
 import BacktrackingVisualizer from "../visualizer/algorithm/backtracking/BacktrackingVisualizer.jsx";
 
 // Assets
-import { images } from "../assets/data/images.js";
-import { algorithms } from "../assets/data/references.js";
+import { images, algorithmsReferences } from "../assets/data";
 
 const BackTracking = () => {
     return (
@@ -101,7 +95,7 @@ const BackTracking = () => {
                     ]} />
             </section>
 
-            <References references={algorithms.backtracking} />
+            <References references={algorithmsReferences.backtracking} />
         </div>
     );
 };

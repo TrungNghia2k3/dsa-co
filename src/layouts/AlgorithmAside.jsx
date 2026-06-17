@@ -14,11 +14,11 @@ const AlgorithmAside = ({onAlgorithmClick}) => {
 
     const AlgorithmList = () => (
         <>
-            {Object.keys(categories).map((category, index) => (
+            {Object.keys(categories).sort((a, b) => a.localeCompare(b)).map((category, index) => (
                 <div key={index} className="mb-4">
                     <h3 className="text-lg font-bold mb-2">{formatTitle(category)}</h3>
                     <ul>
-                        {categories[category].map((item, idx) => (
+                        {categories[category].sort((a, b) => a.localeCompare(b)).map((item, idx) => (
                             <li key={idx}>
                                 <button
                                     onClick={() => handleAlgorithmClick(item)}

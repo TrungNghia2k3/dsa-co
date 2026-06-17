@@ -1,16 +1,12 @@
 // Components
-import Bullet from "../../components/Bullet.jsx";
-import CodeBlock from "../../components/CodeBlock.jsx";
-import Heading from "../../components/Heading.jsx";
-import Paragraph from "../../components/Paragraph.jsx";
-import TableOfContents from "../../components/TableOfContents.jsx";
+import { Bullet, CodeBlock, Heading, Paragraph, TableOfContents } from "../../components";
 
 // Visualizers
 import ThreeSumClosestBruteForceVisualizer from "../../visualizer/problem/three-sum-closest/ThreeSumClosestBruteForceVisualizer.jsx";
 import ThreeSumClosestTwoPointersVisualizer from "../../visualizer/problem/three-sum-closest/ThreeSumClosestTwoPointersVisualizer.jsx";
 
 // Assets
-import { solutions } from "../../assets/data/solutions.js";
+import { solutions } from "../../assets/data";
 
 const ThreeSumClosest = () => {
     return (
@@ -28,7 +24,7 @@ const ThreeSumClosest = () => {
 
             <section id="problem-analysis">
                 <Heading heading={"Problem Analysis"} />
-                
+
                 <Paragraph content={"3Sum Closest is a variation of the classic 3Sum problem where instead of finding triplets that sum to zero, we need to find the triplet whose sum is closest to a given target value."} />
 
                 <Bullet
@@ -53,7 +49,7 @@ const ThreeSumClosest = () => {
 
             <section id="approach-1-brute-force">
                 <Heading heading={"Approach 1: Brute Force"} />
-                
+
                 <Paragraph content={"The brute force approach examines all possible triplets and tracks the one with sum closest to the target."} />
 
                 <Bullet
@@ -74,9 +70,9 @@ const ThreeSumClosest = () => {
                         "Space Complexity: O(1) - only using constant extra space"
                     ]} />
 
-                <CodeBlock 
-                    language="javascript" 
-                    code={solutions.three_sum_closest.brute_force.javascript} 
+                <CodeBlock
+                    language="javascript"
+                    code={solutions.three_sum_closest.brute_force.javascript}
                 />
 
                 <ThreeSumClosestBruteForceVisualizer />
@@ -84,7 +80,7 @@ const ThreeSumClosest = () => {
 
             <section id="approach-2-two-pointers">
                 <Heading heading={"Approach 2: Two Pointers (Optimal)"} />
-                
+
                 <Paragraph content={"The two pointers approach optimizes the solution by sorting the array first and using intelligent pointer movement to find the closest sum efficiently."} />
 
                 <Bullet
@@ -97,7 +93,7 @@ const ThreeSumClosest = () => {
                         "Update closest_sum if current sum is closer to target",
                         "Move pointers based on comparison with target:",
                         "  • If current_sum < target: move left pointer right",
-                        "  • If current_sum > target: move right pointer left", 
+                        "  • If current_sum > target: move right pointer left",
                         "  • If current_sum == target: return target (optimal)",
                         "Continue until all possibilities are explored"
                     ]} type="ol" />
@@ -118,9 +114,9 @@ const ThreeSumClosest = () => {
                         "Space Complexity: O(1) - only using constant extra space (excluding sorting)"
                     ]} />
 
-                <CodeBlock 
-                    language="javascript" 
-                    code={solutions.three_sum_closest.two_pointers.javascript} 
+                <CodeBlock
+                    language="javascript"
+                    code={solutions.three_sum_closest.two_pointers.javascript}
                 />
 
                 <ThreeSumClosestTwoPointersVisualizer />

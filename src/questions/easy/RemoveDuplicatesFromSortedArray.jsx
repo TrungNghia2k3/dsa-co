@@ -1,17 +1,12 @@
 // Components
-import Paragraph from "../../components/Paragraph.jsx";
-import ExampleList from "../../components/ExampleList.jsx";
-import ConstraintsBullet from "../../components/ConstraintsBullet.jsx";
-import Bullet from "../../components/Bullet.jsx";
-import TableOfContents from "../../components/TableOfContents.jsx";
-import References from "../../components/References.jsx";
+import { Paragraph, ExampleList, ConstraintsBullet, Bullet, TableOfContents, References } from "../../components";
 
 // Visualizers
 import RemoveDuplicatesTwoPointersVisualizer from "../../visualizer/problem/remove-duplicates-from-sorted-array/RemoveDuplicatesTwoPointersVisualizer.jsx";
 import RemoveDuplicatesHashSetVisualizer from "../../visualizer/problem/remove-duplicates-from-sorted-array/RemoveDuplicatesHashSetVisualizer.jsx";
 
 // Assets
-import {questions} from "../../assets/data/references.js";
+import { questionsReferences } from "../../assets/data/questionsReferences.js";
 
 const RemoveDuplicatesFromSortedArray = () => {
 
@@ -32,7 +27,7 @@ const RemoveDuplicatesFromSortedArray = () => {
     return (
         <div>
             <Paragraph
-                content={"Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same. Then return the number of unique elements in nums."}/>
+                content={"Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same. Then return the number of unique elements in nums."} />
 
             <Bullet
                 heading={"Consider the number of unique elements of nums to be k, to get accepted, you need to do the following things:"}
@@ -42,30 +37,30 @@ const RemoveDuplicatesFromSortedArray = () => {
                 ]}
             />
 
-            <ExampleList examples={examples}/>
+            <ExampleList examples={examples} />
 
             <ConstraintsBullet
                 constraints={[
-                    {text: '1 <= nums.length <= 3 * 10^4', type: 'math'},
-                    {text: '-100 <= nums[i] <= 100', type: 'math'},
-                    {text: 'nums is sorted in non-decreasing order.', type: 'text'},
+                    { text: '1 <= nums.length <= 3 * 10^4', type: 'math' },
+                    { text: '-100 <= nums[i] <= 100', type: 'math' },
+                    { text: 'nums is sorted in non-decreasing order.', type: 'text' },
                 ]}
             />
 
             <TableOfContents items={[
-                {id: 'remove-duplicates-hash-set', title: 'Approach 1: Hash Set'},
-                {id: 'remove-duplicates-two-pointers', title: 'Approach 2: Two pointers'},
-            ]}/>
+                { id: 'remove-duplicates-hash-set', title: 'Approach 1: Hash Set' },
+                { id: 'remove-duplicates-two-pointers', title: 'Approach 2: Two pointers' },
+            ]} />
 
             <section id="remove-duplicates-hash-set">
-                <RemoveDuplicatesHashSetVisualizer/>
+                <RemoveDuplicatesHashSetVisualizer />
             </section>
 
             <section id="remove-duplicates-two-pointers">
-                <RemoveDuplicatesTwoPointersVisualizer/>
+                <RemoveDuplicatesTwoPointersVisualizer />
             </section>
 
-            <References references={questions.remove_duplicates}/>
+            <References references={questionsReferences.remove_duplicates} />
         </div>
     );
 };

@@ -38,16 +38,13 @@ import bubbleSortImage2 from "../image/algorithm/bubble-sort-3.png";
 
 import BackTrackingImage0 from "../image/algorithm/backtracking.png";
 
-// Problem images
-import mergeTwoSortedListsImage0 from "../image/problem/merge-two-sorted-lists.png";
+import queueImage0 from "../image/algorithm/queue-1.png";
+import queueImage1 from "../image/algorithm/queue-2.png";
+import queueImage2 from "../image/algorithm/queue-3.png";
+import queueImage3 from "../image/algorithm/queue-4.png";
+import queueImage4 from "../image/algorithm/queue-5.png";
 
-import validParenthesesImage1 from "../image/problem/valid-parentheses/valid-parentheses-1.png";
-import validParenthesesImage2 from "../image/problem/valid-parentheses/valid-parentheses-2.png";
-import validParenthesesImage3 from "../image/problem/valid-parentheses/valid-parentheses-3.png";
-import validParenthesesImage4 from "../image/problem/valid-parentheses/valid-parentheses-4.png";
-import validParenthesesImage5 from "../image/problem/valid-parentheses/valid-parentheses-5.png";
-import validParenthesesImage6 from "../image/problem/valid-parentheses/valid-parentheses-6.png";
-import validParenthesesImage7 from "../image/problem/valid-parentheses/valid-parentheses-7.png";
+
 
 export const images = {
     array: {
@@ -95,20 +92,14 @@ export const images = {
     },
     backtracking: {
         "image 0": BackTrackingImage0,
-    }
+    },
+    queue: {
+        "image 0": queueImage0,
+        "image 1": queueImage1,
+        "image 2": queueImage2,
+        "image 3": queueImage3,
+        "image 4": queueImage4,
+    },
 };
 
-export const imagesProblem = {
-    "Merge Two Sorted Lists": {
-        "image 0": mergeTwoSortedListsImage0,
-    }, 
-    "Valid Parentheses": {
-        "image 1": validParenthesesImage1,
-        "image 2": validParenthesesImage2,
-        "image 3": validParenthesesImage3,
-        "image 4": validParenthesesImage4,
-        "image 5": validParenthesesImage5,
-        "image 6": validParenthesesImage6,
-        "image 7": validParenthesesImage7,
-    }
-}
+

@@ -13,12 +13,12 @@ export const categories = {
         "A* Pathfinding"
     ],
     data_structures: [
-        "Array",  "String", "Binary Tree", "Linked List", "Hash Table", "Stack", "Queue",
+        "Array", "String", "Binary Tree", "Linked List", "Hash Table", "Hash Map", "Hash Set", "Linked Hash Map", "Tree Map", "Stack", "Queue",
         "AVL Tree", "Red-Black Tree", "Heap", "Trie", "Set", "Map"
     ],
     techniques: [
-        "Hashing", "Two Pointer", "Window Sliding", "Prefix Sum", "Recursion", "Backtracking",
-        "Dynamic Programming", "Greedy Algorithms", "Bit Manipulation", "Divide and Conquer", "Handling Duplicates"
+        "Hashing", "Two Pointer", "Sliding Window", "Prefix Sum", "Recursion", "Backtracking",
+        "Dynamic Programming", "Greedy Algorithms", "Bit Manipulation", "Divide and Conquer", "Handling Duplicates", "Floyd’s Cycle Finding Algorithm",
     ]
 };
 

@@ -1,69 +1,61 @@
 // Components
-import Heading from "../components/Heading.jsx";
-import Paragraph from "../components/Paragraph.jsx";
-import Image from "../components/Image.jsx";
-import Bullet from "../components/Bullet.jsx";
-import Table from "../components/Table.jsx";
-import TableOfContents from "../components/TableOfContents.jsx";
-import References from "../components/References.jsx";
+import { Heading, Paragraph, Image, Bullet, Table, TableOfContents, References } from "../components";
 
 // Assets
-import {images} from "../assets/data/images.js";
-import {algorithms} from "../assets/data/references.js";
+import { images, algorithmsReferences } from "../assets/data";
 
 // Visualizer
 import StackVisualizer from "../visualizer/algorithm/stack/StackVisualizer.jsx";
-
 
 const Stack = () => {
     return (
         <div>
             <section id="introduction">
 
-                <Heading heading={"What is Stack Data Structure?"}/>
+                <Heading heading={"What is Stack Data Structure?"} />
 
                 <Paragraph
-                    content={"Stack is a linear data structure that follows LIFO (Last In First Out) Principle, the last element inserted is the first to be popped out. It means both insertion and deletion operations happen at one end only."}/>
+                    content={"Stack is a linear data structure that follows LIFO (Last In First Out) Principle, the last element inserted is the first to be popped out. It means both insertion and deletion operations happen at one end only."} />
 
                 <Image imageURL={images.stack["image 0"]} caption="What is Stack - GeeksforGeeks"
-                       link="https://www.geeksforgeeks.org/introduction-to-stack-data-structure-and-algorithm-tutorials/"/>
+                    link="https://www.geeksforgeeks.org/introduction-to-stack-data-structure-and-algorithm-tutorials/" />
 
-                <Heading heading={"LIFO(Last In First Out) Principle"}/>
+                <Heading heading={"LIFO(Last In First Out) Principle"} />
 
                 <Bullet
                     heading={"Here are some real world examples of LIFO"}
                     items={["Consider a stack of plates. When we add a plate, we add at the top. When we remove, we remove from the top.",
-                        "A shuttlecock box (or any other box that is closed from one end) is another great real-world example of the LIFO (Last In, First Out) principle where do insertions and removals from the same end."]}/>
+                        "A shuttlecock box (or any other box that is closed from one end) is another great real-world example of the LIFO (Last In, First Out) principle where do insertions and removals from the same end."]} />
             </section>
 
             <TableOfContents items={[
-                {id: 'introduction', title: 'What is Stack Data Structure?'},
-                {id: 'representation', title: 'Representation of Stack Data Structure'},
-                {id: 'basic-operations', title: 'Basic Operations on Stack'},
-                {id: 'complexity-analysis', title: 'Complexity Analysis of Operations on Stack Data Structure'},
-                {id: 'applications', title: 'Applications of Stacks'},
-                {id: 'advantages', title: 'Advantages of Stacks'},
-                {id: 'disadvantages', title: 'Disadvantages of Stacks'},
-            ]}/>
+                { id: 'introduction', title: 'What is Stack Data Structure?' },
+                { id: 'representation', title: 'Representation of Stack Data Structure' },
+                { id: 'basic-operations', title: 'Basic Operations on Stack' },
+                { id: 'complexity-analysis', title: 'Complexity Analysis of Operations on Stack Data Structure' },
+                { id: 'applications', title: 'Applications of Stacks' },
+                { id: 'advantages', title: 'Advantages of Stacks' },
+                { id: 'disadvantages', title: 'Disadvantages of Stacks' },
+            ]} />
 
             <section id="representation">
 
-                <Heading heading={"Representation of Stack Data Structure"}/>
+                <Heading heading={"Representation of Stack Data Structure"} />
 
                 <Paragraph
-                    content={"Stack follows LIFO (Last In First Out) Principle so the element which is pushed last is popped first."}/>
+                    content={"Stack follows LIFO (Last In First Out) Principle so the element which is pushed last is popped first."} />
 
-                <Image imageURL={images.stack["image 1"]} caption="Representation of Stack Data Structure"/>
+                <Image imageURL={images.stack["image 1"]} caption="Representation of Stack Data Structure" />
 
                 <Bullet
                     heading={"Types of Stack:"} bold
                     items={["Fixed Size Stack : As the name suggests, a fixed size stack has a fixed size and cannot grow or shrink dynamically. If the stack is full and an attempt is made to add an element to it, an overflow error occurs. If the stack is empty and an attempt is made to remove an element from it, an underflow error occurs.",
-                        "Dynamic Size Stack : A dynamic size stack can grow or shrink dynamically. When the stack is full, it automatically increases its size to accommodate the new element, and when the stack is empty, it decreases its size. This type of stack is implemented using a linked list, as it allows for easy resizing of the stack."]}/>
+                        "Dynamic Size Stack : A dynamic size stack can grow or shrink dynamically. When the stack is full, it automatically increases its size to accommodate the new element, and when the stack is empty, it decreases its size. This type of stack is implemented using a linked list, as it allows for easy resizing of the stack."]} />
             </section>
 
             <section id="basic-operations">
 
-                <Heading heading={"Basic Operations on Stack"}/>
+                <Heading heading={"Basic Operations on Stack"} />
 
                 <Bullet
                     heading={"In order to make manipulations in a stack, there are certain operations provided to us."}
@@ -74,16 +66,16 @@ const Stack = () => {
                             "top() returns the top element of the stack.",
                             "isEmpty() returns true if stack is empty else false.",
                             "isFull() returns true if the stack is full else false."
-                        ]}/>
+                        ]} />
 
-                <Paragraph content={"To implement stack, we need to maintain reference to the top item"}/>
+                <Paragraph content={"To implement stack, we need to maintain reference to the top item"} />
 
-                <StackVisualizer/>
+                <StackVisualizer />
 
-                <Heading heading={"Push Operation on Stack"}/>
+                <Heading heading={"Push Operation on Stack"} />
 
                 <Paragraph
-                    content={"Adds an item to the stack. If the stack is full, then it is said to be an Overflow condition."}/>
+                    content={"Adds an item to the stack. If the stack is full, then it is said to be an Overflow condition."} />
 
                 <Bullet
                     heading={"Algorithm for Push Operation:"} bold
@@ -93,14 +85,14 @@ const Stack = () => {
                             "If the stack is full (top == capacity - 1) , then Stack Overflows and we cannot insert the element to the stack.",
                             "Otherwise, we increment the value of top by 1 (top = top + 1) and the new value is inserted at top position.",
                             "The elements can be pushed into the stack till we reach the capacity of the stack."
-                        ]}/>
+                        ]} />
 
-                <Image imageURL={images.stack["image 2"]} caption="Push Operation in Stack"/>
+                <Image imageURL={images.stack["image 2"]} caption="Push Operation in Stack" />
 
-                <Heading heading={"Pop Operation in Stack"}/>
+                <Heading heading={"Pop Operation in Stack"} />
 
                 <Paragraph
-                    content={"Removes an item from the stack. The items are popped in the reversed order in which they are pushed. If the stack is empty, then it is said to be an Underflow condition."}/>
+                    content={"Removes an item from the stack. The items are popped in the reversed order in which they are pushed. If the stack is empty, then it is said to be an Underflow condition."} />
 
                 <Bullet
                     heading={"Algorithm for Pop Operation:"} bold
@@ -109,13 +101,13 @@ const Stack = () => {
                             "Before popping the element from the stack, we check if the stack is empty.",
                             "If the stack is empty (top == -1), then Stack Underflows and we cannot remove any element from the stack.",
                             "Otherwise, we store the value at top, decrement the value of top by 1 (top = top – 1) and return the stored top value."
-                        ]}/>
+                        ]} />
 
-                <Image imageURL={images.stack["image 3"]} caption="Pop Operation in Stack"/>
+                <Image imageURL={images.stack["image 3"]} caption="Pop Operation in Stack" />
 
-                <Heading heading={"Top or Peek Operation on Stack"}/>
+                <Heading heading={"Top or Peek Operation on Stack"} />
 
-                <Paragraph content={"Returns the top element of the stack."}/>
+                <Paragraph content={"Returns the top element of the stack."} />
 
                 <Bullet
                     heading={"Algorithm for Top Operation:"} bold
@@ -124,13 +116,13 @@ const Stack = () => {
                             "Before returning the top element from the stack, we check if the stack is empty.",
                             "If the stack is empty (top == -1), we simply print “Stack is empty”.",
                             "Otherwise, we return the element stored at index = top."
-                        ]}/>
+                        ]} />
 
-                <Image imageURL={images.stack["image 4"]} caption="Top or Peek Operation in Stack"/>
+                <Image imageURL={images.stack["image 4"]} caption="Top or Peek Operation in Stack" />
 
-                <Heading heading={"isEmpty Operation in Stack Data Structure:"}/>
+                <Heading heading={"isEmpty Operation in Stack Data Structure:"} />
 
-                <Paragraph content={"Returns true if the stack is empty, else false."}/>
+                <Paragraph content={"Returns true if the stack is empty, else false."} />
 
                 <Bullet
                     heading={"Algorithm for isEmpty Operation:"} bold
@@ -139,13 +131,13 @@ const Stack = () => {
                             "Check for the value of top in stack.",
                             "If (top == -1), then the stack is empty so return true .",
                             "Otherwise, the stack is not empty so return false ."
-                        ]}/>
+                        ]} />
 
-                <Image imageURL={images.stack["image 5"]} caption="isEmpty Operation in Stack"/>
+                <Image imageURL={images.stack["image 5"]} caption="isEmpty Operation in Stack" />
 
-                <Heading heading={"isFull Operation in Stack Data Structure:"}/>
+                <Heading heading={"isFull Operation in Stack Data Structure:"} />
 
-                <Paragraph content={"Returns true if the stack is full, else false."}/>
+                <Paragraph content={"Returns true if the stack is full, else false."} />
 
                 <Bullet
                     heading={"Algorithm for isFull Operation:"} bold
@@ -154,48 +146,48 @@ const Stack = () => {
                             "Check for the value of top in stack.",
                             "If (top == capacity-1), then the stack is full so return true.",
                             "Otherwise, the stack is not full so return false."
-                        ]}/>
+                        ]} />
 
-                <Image imageURL={images.stack["image 6"]} caption="isFull Operation in Stack"/>
+                <Image imageURL={images.stack["image 6"]} caption="isFull Operation in Stack" />
             </section>
 
             <section id="complexity-analysis">
 
-                <Heading heading={"Complexity Analysis of Operations on Stack Data Structure"}/>
+                <Heading heading={"Complexity Analysis of Operations on Stack Data Structure"} />
 
                 <Table
                     rows={6}
                     cols={3}
                     data={[
                         [
-                            {text: 'Operations', bold: true, padding: 'py-3', backgroundColor: 'bg-stone-800'},
-                            {text: 'Time Complexity', bold: true, backgroundColor: 'bg-stone-800'},
-                            {text: 'Space Complexity', bold: true, backgroundColor: 'bg-stone-800'}
+                            { text: 'Operations', bold: true, padding: 'py-3', backgroundColor: 'bg-stone-800' },
+                            { text: 'Time Complexity', bold: true, backgroundColor: 'bg-stone-800' },
+                            { text: 'Space Complexity', bold: true, backgroundColor: 'bg-stone-800' }
                         ],
                         [
-                            {text: 'push()', padding: "p-3", backgroundColor: 'bg-stone-800'},
-                            {text: 'O(1)', padding: "p-3"},
-                            {text: 'O(1)', padding: "p-3"}
+                            { text: 'push()', padding: "p-3", backgroundColor: 'bg-stone-800' },
+                            { text: 'O(1)', padding: "p-3" },
+                            { text: 'O(1)', padding: "p-3" }
                         ],
                         [
-                            {text: 'pop()', padding: "p-3", backgroundColor: 'bg-stone-800'},
-                            {text: 'O(1)', padding: "p-3"},
-                            {text: 'O(1)', padding: "p-3"}
+                            { text: 'pop()', padding: "p-3", backgroundColor: 'bg-stone-800' },
+                            { text: 'O(1)', padding: "p-3" },
+                            { text: 'O(1)', padding: "p-3" }
                         ],
                         [
-                            {text: 'top() or peek()', padding: "p-3", backgroundColor: 'bg-stone-800'},
-                            {text: 'O(1)', padding: "p-3"},
-                            {text: 'O(1)', padding: "p-3"}
+                            { text: 'top() or peek()', padding: "p-3", backgroundColor: 'bg-stone-800' },
+                            { text: 'O(1)', padding: "p-3" },
+                            { text: 'O(1)', padding: "p-3" }
                         ],
                         [
-                            {text: 'isEmpty()', padding: "p-3", backgroundColor: 'bg-stone-800'},
-                            {text: 'O(1)', padding: "p-3"},
-                            {text: 'O(1)', padding: "p-3"}
+                            { text: 'isEmpty()', padding: "p-3", backgroundColor: 'bg-stone-800' },
+                            { text: 'O(1)', padding: "p-3" },
+                            { text: 'O(1)', padding: "p-3" }
                         ],
                         [
-                            {text: 'isFull()', backgroundColor: 'bg-stone-800'},
-                            {text: 'O(1)'},
-                            {text: 'O(1)'}
+                            { text: 'isFull()', backgroundColor: 'bg-stone-800' },
+                            { text: 'O(1)' },
+                            { text: 'O(1)' }
                         ]
                     ]}
                 />
@@ -203,7 +195,7 @@ const Stack = () => {
 
             <section id="applications">
 
-                <Heading heading={"Applications of Stacks"}/>
+                <Heading heading={"Applications of Stacks"} />
 
                 <Bullet
                     items={
@@ -219,7 +211,7 @@ const Stack = () => {
 
             <section id="advantages">
 
-                <Heading heading={"Advantages of Stacks"}/>
+                <Heading heading={"Advantages of Stacks"} />
 
                 <Bullet
                     items={
@@ -234,7 +226,7 @@ const Stack = () => {
 
             <section id="disadvantages">
 
-                <Heading heading={"Disadvantages of Stacks"}/>
+                <Heading heading={"Disadvantages of Stacks"} />
 
                 <Bullet
                     items={
@@ -247,7 +239,7 @@ const Stack = () => {
                 />
             </section>
 
-            <References references={algorithms.stack}/>
+            <References references={algorithmsReferences.stack} />
         </div>
     );
 };
